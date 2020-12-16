@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>DevJane Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
+        
+        <!-- Update these with your own fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet"> 
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="img/devzaak.png" alt="">
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="index.html#services" class="nav__link">My Services</a></li>
+                    <li class="nav__item"><a href="index.html#about" class="nav__link">About me</a></li>
+                    <li class="nav__item"><a href="index.html#work" class="nav__link">My Work</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+
+        <section class="intro">
+            <h1 class="section__title section__title--intro">
+                Here is <strong>some of my code</strong>
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">Python probabilty calculator</p>
+            <img src="img/projects-08.png" alt="" class="intro__img">
+        </section>
+        
+        <div class="portfolio-item-individual">
+<p>This is a python program to simulate picking bllas at ramdom from a Hat of balls of different colors and quntities. the program randonly picks (n) ball (num_experiment) times then uses one simple dicision to calculate the complex probabilty</p>
+           <p> <code> <br>
+import copy<br>
+import random<br>
+#only copy.deecopy() and random.choice(list) are used<br>
+<br>
+class Hat:<br>
+#Class that simulates the probabilty of selecting balls in a hat<br>
+<br>
+  def __init__(self, **kwargs):<br>
+      self.contents = []<br>
+      for key, value in kwargs.items():<br>
+          for i in range(value):<br>
+            self.contents.append(key)<br>
+
+  def draw(self, number):<br>
+      simulated_balls = []<br>
+      if number >= len(self.contents):<br>
+        return self.contents<br>
+<br>
+    # Pick a ball at random and remove from the bag<br>
+      for i in range(number):<br>
+          random_ball = random.choice(self.contents)<br>
+          simulated_balls.append(random_ball)<br>
+          self.contents.pop(self.contents.index(random_ball))<br>
+  
+      return simulated_balls<br>
+    
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
+    n = 0<br>
+<br>    
+    for i in range(num_experiments):<br>
+        hat_copy = copy.deepcopy(hat)<br>
+        random_draw = hat_copy.draw(num_balls_drawn)<br>
+<br>    
+    # the result as a dict:<br>
+        random_dict = {ball: random_draw.count(ball) for ball in set(random_draw)}<br>
+<br>
+    # Compare randomly drawn balls to the desired result:<br>
+        result = True<br>
+        for k, v in expected_balls.items():<br>
+            if k not in random_dict or random_dict[k] < expected_balls[k]:<br>
+                result = False<br>
+                break<br>
+<br>
+        if result:<br>
+            n += 1<br>
+<br>
+    return n/num_experiments<br>
+</code/></p>
+            <img src="img/projects-details.jpg" alt="">
+            <p>This program show that a computer making a random sample thousands of times can calculate the actual probabilty of a desired result </p>
+            <p>Computer can also simulate other events, such as the motion of a flock of birds.</p>
+        </div>
+        
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <!-- replace with your own email address -->
+            <a href="mailto:mungruez@gmail.com" class="footer__link">hello@jane.dev</a>
+            <ul class="social-list">
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://codepen.io">
+                        <i class="fab fa-codepen"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="http://dribbble.com">
+                        <i class="fab fa-dribbble"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://twitter.com">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+        
+        
+        <script src="js/index.js"></script>
+        
+    </body>
+</html>
