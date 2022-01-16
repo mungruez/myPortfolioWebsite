@@ -31,7 +31,7 @@
 
         <section class="intro">
             <h1 class="section__title section__title--intro">
-                Here is <strong>some of my code</strong>
+                Here is <strong>some of my Python code</strong>
             </h1>
             <p class="section__subtitle section__subtitle--intro">Python probabilty calculator</p>
             <img src="img/projects-08.png" alt="" class="intro__img">
@@ -94,6 +94,92 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
         </div>
         
         
+        
+        
+        
+        
+        <section class="intro">
+            <h1 class="section__title section__title--intro">
+                Here is <strong>a Python Web Scraper</strong>
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">A Python web scraper that uses Selenium and Scrapy</p>
+            <img src="img/projects-08.png" alt="" class="intro__img">
+        </section>
+        
+        <div class="portfolio-item-individual">
+            <p>This is a python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through programs and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python.This is called an experiment so the computer determines the number of times it needs to pick balls from the Hat to get the desired result. After thousands of experiments the computer can use one simple division to calculate the complex probabilty. This is because computers can o one million mathematical operations per second</p>
+            <p> <code> <br>
+import scrapy<br>
+from scrapy.utils.project import get_project_settings<br>
+from selenium import webdriver<br>
+#import the selenium web driver and use its path<br>
+<br>
+class StjacksSeleniumSpider(scrapy.Spider):<br>
+#A Python Scrapy Spider that uses Selenium<br>
+<br>
+&nbsp &nbsp &nbsp &nbsp name = 'stjacks_spider'<br>
+&nbsp &nbsp &nbsp &nbsp start_urls = ["https://stjacks.com/ElSalvador"]<br>
+&nbsp &nbsp &nbsp &nbsp custom_settings = {}<br>
+&nbsp &nbsp &nbsp &nbsp def parse(self, response):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp settings = get_project_settings()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver_path = '/usr/local/bin/chromedriver'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = webdriver.ChromeOptions()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = options.headless = True<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver = webdriver.Chrome(driver_path, options=options)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get('https://www.stjacks.com/ElSalvador')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_extracted = response.xpath("//span[contains(@class, 'mega-nav-link-in')]/text()").extract()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href = set(categories_extracted)<br>               
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninas")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninos")<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for category_href in categories_href:<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = str(category_href)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/r')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/n')br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(len(ca)<1):<br>
+                
+                
+&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp self.contents.append(key)<br>
+
+  &nbsp &nbsp &nbsp &nbsp def draw(self, number):<br>
+  &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp simulated_balls = []<br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if number >= len(self.contents):<br>
+        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspreturn self.contents<br>
+<br>
+    # Pick a ball at random and remove from the bag<br>
+      &nbsp &nbsp &nbsp &nbspfor i in range(number):<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsprandom_ball = random.choice(self.contents)<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspsimulated_balls.append(random_ball)<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspself.contents.pop(self.contents.index(random_ball))<br>
+  
+      &nbsp &nbsp &nbsp &nbspreturn simulated_balls<br>
+    
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
+    &nbsp &nbsp &nbsp &nbspn = 0<br>
+<br>    
+    &nbsp &nbsp &nbsp &nbspfor i in range(num_experiments):<br>
+        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsphat_copy = copy.deepcopy(hat)<br>
+        &nbsp &nbsp &nbsp &nbsprandom_draw = hat_copy.draw(num_balls_drawn)<br>
+<br>    
+    # the result as a dict:<br>
+        &nbsp &nbsp &nbsp &nbsprandom_dict = {ball: random_draw.count(ball) for ball in set(random_draw)}<br>
+<br>
+    # Compare randomly drawn balls to the desired result:<br>
+        &nbsp &nbsp &nbsp &nbs presult = True<br>
+        &nbsp &nbsp &nbsp &nbsp for k, v in expected_balls.items():<br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if k not in random_dict or random_dict[k] < expected_balls[k]:<br>
+                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspresult = False<br>
+                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspbreak<br>
+<br>
+        &nbsp &nbsp &nbsp &nbspif result:<br>
+            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspn += 1<br>
+<br>
+    &nbsp &nbsp &nbsp &nbspreturn n/num_experiments<br>
+</code/></p>
+            <img src="img/projects-details.jpg" alt="">
+            <p>This program show that a computer making a random sample thousands of times can calculate the actual probabilty of a desired result </p>
+            <p>Computers can also simulate other events, such as the motion of a flock of birds.</p>
+        </div>
         <!-- Footer -->
         <footer class="footer">
             <a href="mailto:mungruez@gmail.com" class="footer__link">mungruez@gmail.com</a>
