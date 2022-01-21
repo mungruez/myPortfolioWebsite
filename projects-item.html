@@ -107,7 +107,7 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
         </section>
         
         <div class="portfolio-item-individual">
-            <p>This is a python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through programs and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python.This is called an experiment so the computer determines the number of times it needs to pick balls from the Hat to get the desired result. After thousands of experiments the computer can use one simple division to calculate the complex probabilty. This is because computers can o one million mathematical operations per second</p>
+            <p>This is a python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through a web driver and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python. Install Python version 3, Scrapy and Selenium to run this script.</p>
             <p> <code> <br>
 import scrapy<br>
 from scrapy.utils.project import get_project_settings<br>
@@ -137,48 +137,91 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/r')<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/n')br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(len(ca)<1):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp continue<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(ca=='Novedades'):<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/{ca}")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Ninos'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/6?{ca}"")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>               
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Ninas'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/5?{ca}")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Bebes'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebas'<br>                 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/1?{ca}")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Accesorios'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/10?RopaInteriory{ca}=true")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='BASIKOS'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/12?Basikos=true")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Toddlers'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinas'<br>                 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/3?{ca}")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Juvenil'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/7?Damas")br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Damas'<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'),<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback=self.parse_product,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cb_kwargs = {<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp }<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp )<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(ca=='Bebas'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebos'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/2?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(ca=='ToddlerNinas'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinos'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/4?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif(ca=='Damas'):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Caballeros'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/8?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(ca=='Caballeros' or ca=='ToddlerNinos' or ca=='Bebos'):<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'), <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback = self.parse_product, <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &npsb cb_kwargs = { <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &npsb &nbsp &nbsp &nbsp &npsb "category": ca,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &npsb &nbsp &nbsp &nbsp &npsb "images": image.get_attribute('data-setbg')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &npsb } <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) <br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.quit() <br>
                 
-                
-&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp self.contents.append(key)<br>
+&nbsp &nbsp &nbsp &nbsp def parse_product(self, response, category, images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p= str(response.xpath("//div[@id='detalle-derecha']/div[2]/div[2]/p/text()").get())<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.replace('$', '').replace(',', '')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip('/r').strip('/n')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if(len(p)<1):<br>
+&nbsp &nbsp &nbsp &nbsp p="0.00"<br>
+    # yield the results as a dictionary<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield {<br>
+&nbsp &nbsp &nbsp &nbsp 'name': response.xpath("//h1[@class='product-title noShowMobil']/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp 'offer-price': float(p),<br>
+&nbsp &nbsp &nbsp &nbsp 'category': category,<br>
+&nbsp &nbsp &nbsp &nbsp 'sub-category': response.xpath("//div[@id='detalle-derecha']/div[1]/div[1]/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp 'sku': response.xpath("//div[@id='detalle-derecha']/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp 'images': images,<br>
 
-  &nbsp &nbsp &nbsp &nbsp def draw(self, number):<br>
-  &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp simulated_balls = []<br>
-  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if number >= len(self.contents):<br>
-        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspreturn self.contents<br>
-<br>
-    # Pick a ball at random and remove from the bag<br>
-      &nbsp &nbsp &nbsp &nbspfor i in range(number):<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsprandom_ball = random.choice(self.contents)<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspsimulated_balls.append(random_ball)<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspself.contents.pop(self.contents.index(random_ball))<br>
-  
-      &nbsp &nbsp &nbsp &nbspreturn simulated_balls<br>
-    
-def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
-    &nbsp &nbsp &nbsp &nbspn = 0<br>
-<br>    
-    &nbsp &nbsp &nbsp &nbspfor i in range(num_experiments):<br>
-        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsphat_copy = copy.deepcopy(hat)<br>
-        &nbsp &nbsp &nbsp &nbsprandom_draw = hat_copy.draw(num_balls_drawn)<br>
-<br>    
-    # the result as a dict:<br>
-        &nbsp &nbsp &nbsp &nbsprandom_dict = {ball: random_draw.count(ball) for ball in set(random_draw)}<br>
-<br>
-    # Compare randomly drawn balls to the desired result:<br>
-        &nbsp &nbsp &nbsp &nbs presult = True<br>
-        &nbsp &nbsp &nbsp &nbsp for k, v in expected_balls.items():<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if k not in random_dict or random_dict[k] < expected_balls[k]:<br>
-                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspresult = False<br>
-                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspbreak<br>
-<br>
-        &nbsp &nbsp &nbsp &nbspif result:<br>
-            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspn += 1<br>
-<br>
-    &nbsp &nbsp &nbsp &nbspreturn n/num_experiments<br>
+}<br>
 </code/></p>
-            <img src="img/projects-details.jpg" alt="">
-            <p>This program show that a computer making a random sample thousands of times can calculate the actual probabilty of a desired result </p>
-            <p>Computers can also simulate other events, such as the motion of a flock of birds.</p>
+            <img src="img/screenshot-stjacksjson.png" alt="">
+            <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
+            <p>I have written the code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more.</p>
         </div>
         <!-- Footer -->
         <footer class="footer">
@@ -190,17 +233,17 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
                     </a>
                 </li>
                 <li class="social-list__item">
-                    <a class="social-list__link" href="http://dribbble.com">
-                        <i class="fab fa-dribbble"></i>
+                    <a class="social-list__link" href="https://www.facebook.com/profile.php?id=100001067969244">
+                        <i class="fab fa-facebook"></i>
                     </a>
                 </li>
                 <li class="social-list__item">
-                    <a class="social-list__link" href="https://twitter.com">
+                    <a class="social-list__link" href="https://twitter.com/ZaakirMungrue">
                         <i class="fab fa-twitter"></i>
                     </a>
                 </li>
                 <li class="social-list__item">
-                    <a class="social-list__link" href="https://github.com">
+                    <a class="social-list__link" href="https://github.com/mungruez">
                         <i class="fab fa-github"></i>
                     </a>
                 </li>
