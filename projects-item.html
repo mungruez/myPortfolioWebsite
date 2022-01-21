@@ -198,8 +198,8 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp } <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) <br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.quit() <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.quit() <br><br>
                 
 &nbsp &nbsp &nbsp &nbsp def parse_product(self, response, category, images):<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p= str(response.xpath("//div[@id='detalle-derecha']/div[2]/div[2]/p/text()").get())<br>
@@ -210,12 +210,12 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspp="0.00"<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield the results as a dictionary<br><br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield {<br>
-&nbsp &nbsp &nbsp &nbsp 'name': response.xpath("//h1[@class='product-title noShowMobil']/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp 'offer-price': float(p),<br>
-&nbsp &nbsp &nbsp &nbsp 'category': category,<br>
-&nbsp &nbsp &nbsp &nbsp 'sub-category': response.xpath("//div[@id='detalle-derecha']/div[1]/div[1]/p/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp 'sku': response.xpath("//div[@id='detalle-derecha']/p/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp 'images': images,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'name': response.xpath("//h1[@class='product-title noShowMobil']/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'offer-price': float(p),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'category': category,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sub-category': response.xpath("//div[@id='detalle-derecha']/div[1]/div[1]/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sku': response.xpath("//div[@id='detalle-derecha']/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'images': images,<br>
 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp}<br>
 </code/></p>
             <img src="img/screenshot-stjacksjson.png" alt="">
