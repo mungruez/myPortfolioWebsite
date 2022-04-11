@@ -239,7 +239,39 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
   <p>Whenever a request is received by the Django server , the server looks for a matching pattern in the url Patterns defined for the project, a 404 error is returned if no match id found. If a match id found the view file associated with the url is executed and sent as the response.</p> 
   <p>Django uses MVT the controller is the view in Django. Views are based on data from models.</p>  
   <p>In Django there can be many apps and each app has its own urls.py file. In the urls.py file for the project the individual urls.py files are used by using the includes function.<p/> 
-  
+          <p> <code> <br>
+                
+<pre>from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('projects/', include('projects.urls')),
+    path('', include('users.urls')),
+    path('api/', include('api.urls')),
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),
+         name="reset_password"),
+
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="reset_password_sent.html"),
+         name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="reset.html"),
+         name="password_reset_confirm"),
+
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="reset_password_complete.html"),
+         name="password_reset_complete"),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</pre>
+
+     </code/></p>
+     
+     
   <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p> 
   
   <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p> 
