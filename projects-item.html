@@ -90,10 +90,10 @@ def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
 </code/></p>
             <p>This program show that a computer making a random sample thousands of times can calculate the actual probabilty of a desired result </p>
             <p>Computers can also simulate other events, such as the motion of a flock of birds.</p>
-            <br> <br>
+            <br><br><br><br>
             <img src="img/PythonDjangoCertificate.png" alt="">
-            <p>Udemy Python Django Certificate</p>
-        </div>
+            <p><i>Udemy Python Django Certificate</i></p>
+        </div><br>
         
         
         
@@ -222,7 +222,7 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
 </code/></p>
             <img src="img/screenshot-stjacksjson.png" alt="">
             <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
-            <p>I have written the code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
+            <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
         </div>
         
         
@@ -241,7 +241,8 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
   <p>Whenever a request is received by the Django server , the server looks for a matching pattern in the url Patterns defined for the project, a 404 error is returned if no match id found. If a match id found the view file associated with the url is executed and sent as the response.</p> 
   <p>Django uses MVT the controller is the view in Django. Views are based on data from models.</p>  
   <p>In Django there can be many apps and each app has its own urls.py file. In the urls.py file for the project the individual urls.py files are used by using the includes function.<p/> 
-          <p> <code> <br>
+            <p><i>Below is the urls.py file for a Django project with three apps , a projects app , a users app and an api app.</i></p>
+            <p> <code> <br>
                 
 <pre>from django.contrib import admin
 from django.urls import path, include
@@ -275,7 +276,7 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</
      
      
   <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p>
-  <p>Below is an example of a models.py file for a Django Application. There are three models in this file, A Project model, A Review model and a Tag model. The Review model related to the project model by using a foreign key. Both the Project model and review model are foreign keys in the owner Profile model not shown.</p>
+  <p><i>Below is an example of a models.py file for a Django Application. There are three models in this file, A Project model, A Review model and a Tag model. The Review model related to the project model by using a foreign key. Both the Project model and review model are foreign keys in the owner Profile model not shown.</i></p>
   
   <p> <code> <br>
                 
@@ -361,12 +362,12 @@ class Tag(models.Model):
     def __str__(self):
         return self.name</pre>
 
-</code/></p><br><br>
+</code/></p><br><br><br>
 
 
 
   <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p>
-  <p> Below is the serializers.py file for the same Django project mentioned above. the file contains all serializers for the entire project including the Profile serializer. Notice the inner meta class is used to define which fields of the model will be serialized. Also the Profile serializer uses a method field which must be obtained fram a function beginning with get_ , which is in this case get-reviews</p>
+  <p><i> Below is the serializers.py file for the same Django project mentioned above. the file contains all serializers for the entire project including the Profile serializer. Notice the inner meta class is used to define which fields of the model will be serialized. Also the Profile serializer uses a method field which must be obtained fram a function beginning with get_ , which is in this case get-reviews</i></p>
   <p> <code> <br>
                 
 <pre>from rest_framework import serializers
@@ -406,12 +407,12 @@ class ProjectSerializer(serializers.ModelSerializer):
         serializer = ReviewSerializer(reviews, many=True)
         return serializer.data</pre>
 
-</code/></p><br><br>
+</code/></p><br><br><br>
 
   
   <p> Django Templates are used to dynamically generate web content  based on data passed in from the View.  The Django Templating Language parses, processes and converts the template to an HTTP response. Templates can be part of other templates in Django the extends and end block statements are used to insert sub-Templates as blocks into Templates.   
    The Django REST framework is a Django app and framework makes the creation of REST APIs easy.</p>
-   <p> Below is the main template for the Django Application. The css files are loaded using static files. The navbar template is included and there is an empty block for other templates to be insterted. </p>
+   <p><i> Below is the main template for the Django Application. The css files are loaded using static files. The navbar template is included and there is an empty block for other templates to be insterted. </i></p>
   <p> <code> <br>
                 
 <pre>&lt;!DOCTYPE html&gt;
@@ -450,7 +451,7 @@ class ProjectSerializer(serializers.ModelSerializer):
 &lt;script src="{% static 'uikit/app.js' %}"&gt;&lt;/script&gt;
 &lt;script src="{% static 'js/main.js' %}"&gt;&lt;/script&gt;
 &lt;/html&gt;</pre>
-</code/></p><br><br>
+</code/></p><br><br><br>
 
   
   <p>The Object Relational Mapper - In Django there is no need to query data with SQL. The ORM allows interacting with the database using an object of the model class. The ORM converts these SQL queries based on the database registered in the settings.py file for the Django project. A Query Set is a collection of objects from the database. A group of rows or records is returned as a Query Set.</p>  
