@@ -272,7 +272,9 @@ urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</
      </code/></p>
      
      
-  <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p> 
+  <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p>
+  <p>Below is an example of a models.py file for a Django Application. There are three models in this file, A Project model, A Review model and a Tag model. The Review model related to the project model by using a foreign key. Both the Project model and review model are foreign keys in the owner Profile model not shown.</p>
+  
   <p> <code> <br>
                 
 <pre>from django.db import models
@@ -360,8 +362,49 @@ class Tag(models.Model):
 </code/></p>
 
 
+
   <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p> 
-  
+  <p> <code> <br>
+                
+<pre>from rest_framework import serializers
+from projects.models import Project, Tag, Review
+from users.models import Profile
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    owner = ProfileSerializer(many=False)
+    tags = TagSerializer(many=True)
+    reviews = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data</pre>
+
+</code/></p>
+
   
   <p> Django Templates are used to dynamically generate web content  based on data passed in from the View.  The Django Templating Language parses, processes and converts the template to an HTTP response. Templates can be part of other templates in Django the extends and end block statements are used to insert sub-Templates as blocks into Templates.   
    The Django REST framework is a Django app and framework makes the creation of REST APIs easy.</p>
@@ -456,11 +499,3 @@ class Tag(models.Model):
         
     </body>
 </html>
-
-        
-        
-        
-        
- 
-        
-        
