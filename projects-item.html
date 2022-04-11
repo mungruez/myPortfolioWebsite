@@ -239,64 +239,58 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
   <p>Whenever a request is received by the Django server , the server looks for a matching pattern in the url Patterns defined for the project, a 404 error is returned if no match id found. If a match id found the view file associated with the url is executed and sent as the response.</p> 
   <p>Django uses MVT the controller is the view in Django. Views are based on data from models.</p>  
   <p>In Django there can be many apps and each app has its own urls.py file. In the urls.py file for the project the individual urls.py files are used by using the includes function.<p/> 
+  
   <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p> 
+  
   <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p> 
-  <p> The built in Django Admin interface allows making changes to database models registered in the admin.py file of the project.</p>
-  <p>A View in Django is a class or function that receives a request and returns a response. A View gets data from the database using models and passes that data to a template (usually as a context dictionary).  After passing the data, the View then sends back the rendered template to the client as an HTTP response. Views also allow redirects to urls.</p>
+  
+  
   <p> Django Templates are used to dynamically generate web content  based on data passed in from the View.  The Django Templating Language parses, processes and converts the template to an HTTP response. Templates can be part of other templates in Django the extends and end block statements are used to insert sub-Templates as blocks into Templates.   
    The Django REST framework is a Django app and framework makes the creation of REST APIs easy.</p>
   <p>The Object Relational Mapper - In Django there is no need to query data with SQL. The ORM allows interacting with the database using an object of the model class. The ORM converts these SQL queries based on the database registered in the settings.py file for the Django project. A Query Set is a collection of objects from the database. A group of rows or records is returned as a Query Set.</p>  
   <p>Middleware is a layer in the Django request, response processing pipeline. Each Middleware performs functions on the request and or response, such as gzipping, caching, and authenticating.  Javascript  is added in Django by adding script tags into templates. Javascript and CSS files can be stored using Django.contrib.staticfiles and these static files can be used in Templates by using the link tag.</p>
-  <p>This is a Django View written in Python. The View responds to requests by extracting a search term from the url then it uses beautiful soup to begins scraping craigslist for the extracted term. Once the list of results are fetched from craigslist the View sends the data with the response to the Template</p>
+  <p> The built in Django Admin interface allows making changes to database models registered in the admin.py file of the project.</p>
+  <p>A View in Django is a class or function that receives a request and returns a response. A View gets data from the database using models and passes that data to a template (usually as a context dictionary).  After passing the data, the View then sends back the rendered template to the client as an HTTP response. Views also allow redirects to urls.
+      This is a Django View written in Python. The View responds to requests by extracting a search term from the url then it uses beautiful soup to begins scraping craigslist for the extracted term. Once the list of results are fetched from craigslist the View sends the data with the response to the Template</p>
           
             <p> <code> <br>
-import copy<br>
-import random<br>
-#only copy.deecopy() and random.choice(list) are used<br>
-<br>
-class Hat:<br>
-#Class that simulates the probabilty of selecting balls in a hat<br>
-<br>
-&nbsp &nbsp &nbsp &nbsp def __init__(self, **kwargs):<br>
-      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp self.contents = []<br>
-      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp for key, value in kwargs.items():<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp for i in range(value):<br>
-            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp self.contents.append(key)<br>
+                
+<pre> def new_search(request):
+    search = request.POST.get('search')
+    models.Search.objects.create(search=search)
+    final_url = BASE_CRAIGSLIST_URL.format(quote_plus(search))
+    response = requests.get(final_url)
+    data = response.text
+    soup = BeautifulSoup(data, features='html.parser')
 
-  &nbsp &nbsp &nbsp &nbsp def draw(self, number):<br>
-  &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp simulated_balls = []<br>
-  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if number >= len(self.contents):<br>
-        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspreturn self.contents<br>
-<br>
-    # Pick a ball at random and remove from the bag<br>
-      &nbsp &nbsp &nbsp &nbspfor i in range(number):<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsprandom_ball = random.choice(self.contents)<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspsimulated_balls.append(random_ball)<br>
-          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspself.contents.pop(self.contents.index(random_ball))<br>
-  
-      &nbsp &nbsp &nbsp &nbspreturn simulated_balls<br>
-    
-def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
-    &nbsp &nbsp &nbsp &nbspn = 0<br>
-<br>    
-    &nbsp &nbsp &nbsp &nbspfor i in range(num_experiments):<br>
-        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsphat_copy = copy.deepcopy(hat)<br>
-        &nbsp &nbsp &nbsp &nbsprandom_draw = hat_copy.draw(num_balls_drawn)<br>
-<br>    
-    # the result as a dict:<br>
-        &nbsp &nbsp &nbsp &nbsprandom_dict = {ball: random_draw.count(ball) for ball in set(random_draw)}<br>
-<br>
-    # Compare randomly drawn balls to the desired result:<br>
-        &nbsp &nbsp &nbsp &nbs presult = True<br>
-        &nbsp &nbsp &nbsp &nbsp for k, v in expected_balls.items():<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if k not in random_dict or random_dict[k] < expected_balls[k]:<br>
-                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspresult = False<br>
-                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspbreak<br>
-<br>
-        &nbsp &nbsp &nbsp &nbspif result:<br>
-            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspn += 1<br>
-<br>
-    &nbsp &nbsp &nbsp &nbspreturn n/num_experiments<br>
+    post_listings = soup.find_all('li', {'class': 'result-row'})
+    final_postings = []
+    for post in post_listings:
+        post_title = post.find(class_='result-title').text
+        post_url = post.find('a').get('href')
+
+        if post.find(class_='result-price'):
+            post_price = post.find(class_='result-price').text
+        else:
+            post_price = 'N/A'
+
+        if post.find(class_='result-image').get('data-ids'):
+            post_image_id = post.find(
+                class_='result-image').get('data-ids').split(',')[0].split(':')[1]
+            post_image_url = BASE_IMAGE_URL.format(post_image_id)
+        else:
+            post_image_url = 'https://craigslist.org/images/peace.jpg'
+
+        final_postings.append(
+            (post_title, post_url, post_price, post_image_url))
+
+    stuff_for_frontend = {
+        'search': search,
+        'final_postings': final_postings,
+    }
+
+    return render(request, 'my_app/new_search.html', stuff_for_frontend)</pre>
+
 </code/></p>
             <img src="img/projects-details.jpg" alt="">
                
