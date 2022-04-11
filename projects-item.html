@@ -363,7 +363,8 @@ class Tag(models.Model):
 
 
 
-  <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p> 
+  <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p>
+  <p> Below is the serializers.py file for the same Django project mentioned above. the file contains all serializers for the entire project including the Profile serializer. Notice the inner meta class is used to define which fields of the model will be serialized. Also the Profile serializer uses a method field which must be obtained fram a function beginning with get_ , which is in this case get-reviews</p>
   <p> <code> <br>
                 
 <pre>from rest_framework import serializers
@@ -408,7 +409,47 @@ class ProjectSerializer(serializers.ModelSerializer):
   
   <p> Django Templates are used to dynamically generate web content  based on data passed in from the View.  The Django Templating Language parses, processes and converts the template to an HTTP response. Templates can be part of other templates in Django the extends and end block statements are used to insert sub-Templates as blocks into Templates.   
    The Django REST framework is a Django app and framework makes the creation of REST APIs easy.</p>
-  
+   <p> Below is the main template for the Django Application. The css files are loaded using static files. The navbar template is included and there is an empty block for other templates to be insterted. </p>
+  <p> <code> <br>
+                
+<pre>&lt;!DOCTYPE html&gt;
+{% load static %}
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /&gt;
+    &lt;link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" /&gt;
+    &lt;link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" /&gt;
+    &lt;link rel="stylesheet" href="{% static 'styles/app.css' %}" /&gt;
+    &lt;title&gt;DevSearch - Connect with Developers!&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    {% include 'navbar.html' %}
+
+    {% if messages %}
+
+    {% for message in messages %}
+    &lt;div class="alert  alert--{{message.tags}}"&gt;
+        &lt;p class="alert__message"&gt;{{message}}&lt;/p&gt;
+        &lt;button class="alert__close"&gt;x&lt;/button&gt;
+    &lt;/div&gt;
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock content %}
+&lt;/body&gt;
+&lt;script src="{% static 'uikit/app.js' %}"&gt;&lt;/script&gt;
+&lt;script src="{% static 'js/main.js' %}"&gt;&lt;/script&gt;
+&lt;/html&gt;</pre>
+</code/></p>
+
   
   <p>The Object Relational Mapper - In Django there is no need to query data with SQL. The ORM allows interacting with the database using an object of the model class. The ORM converts these SQL queries based on the database registered in the settings.py file for the Django project. A Query Set is a collection of objects from the database. A group of rows or records is returned as a Query Set.</p>  
   <p>Middleware is a layer in the Django request, response processing pipeline. Each Middleware performs functions on the request and or response, such as gzipping, caching, and authenticating.  Javascript  is added in Django by adding script tags into templates. Javascript and CSS files can be stored using Django.contrib.staticfiles and these static files can be used in Templates by using the link tag.</p>
@@ -499,3 +540,4 @@ class ProjectSerializer(serializers.ModelSerializer):
         
     </body>
 </html>
+         
