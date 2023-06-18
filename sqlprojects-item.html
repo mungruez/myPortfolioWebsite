@@ -137,8 +137,7 @@ END<br>
 </div><br><br><hr>
         
 
-<div class="markdown"> <p>In the past, straight "A" students have gotten scholarships to reward them for their excellent grades. This year, though, there has been an increase in the number of detentions given to excellent students, so the administration is going to change the rules. In order to encourage the levels of misbehavior to go down, only well-behaved students will be awarded with scholarships this year.</p>
-<p>Information about the straight "A" students is stored in the table <strong>candidates</strong>, and information about all the detentions is stored in the table <strong>detentions</strong>. Here are their structures:</p>
+<div class="markdown"> <p>In the past, straight "A" students have gotten scholarships to reward them for their excellent grades. This year, though, there has been an increase in the number of detentions given to excellent students, so the administration is going to change the rules. In order to encourage the levels of misbehavior to go down, only well-behaved students will be awarded with scholarships this year. Information about the straight "A" students is stored in the table <strong>candidates</strong>, and information about all the detentions is stored in the table <strong>detentions</strong>. Here are their structures:</p>
 <ul>
 <li><strong>candidates</strong>
 <ul>
@@ -153,8 +152,7 @@ END<br>
 </ul>
 </li>
 </ul>
-<p>Your task is to figure out which students should get the scholarships this year. Given the <strong>candidates</strong> and <strong>detentions</strong> tables, return a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table should be sorted in ascending order.</p>
-<p><span class="markdown--header" style="color:#2b3b52;font-size:1.4em">Example</span></p>
+<p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
 <p style="color:#2b3b52;font-size:1.4em">The <strong>candidates</strong> table</p>
   <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: separate"> <tbody> <tr></tr>
 <tbody><tr>
@@ -246,9 +244,6 @@ END<br>
 </tr>
 </tbody></table>
     <p>Only Gerbern Abbey and Nita Simons never got detention, so they will get the scholarships this year.The dates in the example are given in the <em>YYYY-MM-DD</em> format.</p>
-
-<p><strong>[execution time limit] 10 seconds (mysql)</strong></p>
-
 </div>
 
         
