@@ -240,21 +240,14 @@ END<br>
 
 
 
-        <div class="markdown"> <p>In the past, straight "A" students have gotten scholarships to reward them for their excellent grades. This year, though, there has been an increase in the number of detentions given to excellent students, so the administration is going to change the rules. In order to encourage the levels of misbehavior to go down, only well-behaved students will be awarded with scholarships this year. Information about the straight "A" students is stored in the table <strong>candidates</strong>, and information about all the detentions is stored in the table <strong>detentions</strong>. Here are their structures:</p>
+        <div class="markdown"> <p>You're going on vacation in a big city, and you've prepared a list of all the sights you'd like to visit. As you don't have much time and can't spend a whole day at one interesting place, you want to visit several sights per day and walk from one site to another. But walking a long distance might be boring, so you won't walk between two places if the distance between them is <code>5</code> km or more. To find the route that you should take, you are going to find all pairs of places that are less than <code>5</code> km from each other. The places of interests are stored in a table <strong>sights</strong>, which has the following attributes:</p>
 <ul>
-<li><strong>candidates</strong>
-<ul>
-<li><code>candidate_id</code>: the unique candidate ID;</li>
-<li><code>candidate_name</code>: the name of the candidate;</li>
+<li><code>id</code>: the unique ID of the place;</li>
+<li><code>name</code>: the name of the place;</li>
+<li><code>x</code>: the x coordinate of the place;</li>
+<li><code>y</code>: the y coordinate of the place.</li>
 </ul>
-</li>
-<li><strong>detentions</strong>
-<ul>
-<li><code>detention_date</code>: the date of the detention (of the <code>date</code> type);</li>
-<li><code>student_id</code>: the id of the student who got the detention.</li>
-</ul>
-</li>
-</ul>
+
 <p style="color:#2b3b52;font-size:1.4em">The <strong>candidates</strong> table</p>
   <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: separate"> <tbody> <tr></tr>
 <tbody><tr>
@@ -284,67 +277,70 @@ END<br>
 </tbody></table>
     <p style="color:#2b3b52;font-size:1.4em">The <strong>detentions</strong> table</p>
 <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
-<tbody><tr>
-<th>detention_date</th>
-<th>student_id</th>
-</tr>
-<tr>
-<td>2015-10-21</td>
-<td>12</td>
-</tr>
-<tr>
-<td>2015-11-19</td>
-<td>91</td>
-</tr>
-<tr>
-<td>2016-02-11</td>
-<td>87</td>
-</tr>
-<tr>
-<td>2015-12-26</td>
-<td>44</td>
-</tr>
-<tr>
-<td>2016-01-19</td>
-<td>91</td>
-</tr>
-<tr>
-<td>2015-09-10</td>
-<td>91</td>
-</tr>
-<tr>
-<td>2015-12-30</td>
-<td>12</td>
-</tr>
-<tr>
-<td>2016-05-19</td>
-<td>58</td>
-</tr>
+  <tbody><tr>
+    <th>id</th>
+    <th>name</th>
+    <th>x</th>
+    <th>y</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Tower of London</td>
+    <td>51508.026</td>
+    <td>-7.5939</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>Trafalgar Square</td>
+    <td>51508.040</td>
+    <td>-12.7899</td>
+  </tr>    
+  <tr>
+    <td>3</td>
+    <td>London Eye</td>
+    <td>51503.538</td>
+    <td>-11.9371</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>The Shard</td>
+    <td>51504.533</td>
+    <td>-8.6028</td>
+  </tr>    
 </tbody></table>
       
 <p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
+            <p>The distance between the places is calculated with the assumption that they are just points on a 2D map. Given the <strong>sights</strong> table, find all pairs of places that are less than <code>5</code> km from each other and return them as a table with the columns <code>place1</code> and <code>place2</code>. Sorted in lexicographical order. The places in the pairs should also be sorted lexicographically.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
 <p style="color:#2b3b52;font-size:1.4em"> The SQL Procedure</p>
 <div style="background: #3D0C02; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
 CREATE PROCEDURE scholarshipSolution()<br>
 BEGIN<br>
-&nbsp &nbsp &nbsp &nbsp SELECT c.candidate_id AS student_id FROM candidates c<br>
-&nbsp &nbsp &nbsp &nbsp LEFT JOIN detentions d<br>
-&nbsp &nbsp &nbsp &nbsp ON c.candidate_id=d.student_id<br>
-&nbsp &nbsp &nbsp &nbsp WHERE d.detention_date IS NULL;<br>
+&nbsp &nbsp &nbsp &nbsp SELECT a.name AS place1, b.name AS place2 FROM sights AS a<br>
+&nbsp &nbsp &nbsp &nbsp  LEFT JOIN sights b on a.name < b.name<br>
+&nbsp &nbsp &nbsp &nbsp WHERE a.name < b.name AND SQRT(POWER((a.x - b.x) ,2) + POWER((a.y - b.y) ,2)) <= 5<br>
+&nbsp &nbsp &nbsp &nbsp ORDER BY place1, place2; <br>
 END<br>
 </code/></div>
 <p style="color:#2b3b52;font-size:1.4em"> The resulting table of the SQL Procedure</p>
 <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
-<tbody><tr>
-<th>student_id</th>
-</tr>
-<tr>
-<td>35</td>
-</tr>
-<tr>
-<td>103</td>
-</tr>
+ <tbody><tr>
+   <th>place1</th>
+   <th>place2</th>
+ </tr>
+ <tr>
+   <td>London Eye</td>
+   <td>The Shard</td>
+ </tr>
+ <tr>
+   <td>London Eye</td>
+   <td>Trafalgar Square</td>
+ </tr>
+  <tr>
+   <td>The Shard</td>
+   <td>Tower of London</td>
+ </tr>
 </tbody></table>
+
     <p>Only Gerbern Abbey and Nita Simons never got detention, so they will get the scholarships this year.The dates in the example are given in the <em>YYYY-MM-DD</em> format.</p>
 </div><br><br><hr><br><br>
         
