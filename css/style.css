@@ -486,3 +486,12 @@ header {
     word-wrap: break-word;
     word-break: break-word;
 }
+
+.markdown table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
