@@ -86,7 +86,7 @@
 <p>When the following SQL Query is executed on the <strong>foreignCompetitors</strong> table, it results into a table with two columns: <strong>country</strong> and <strong>competitors</strong>. The first column contains the country name, and the second column contains the number of competitors in this country. The resulting table is sorted by the country names in <em>ascending</em> order. The UNION clause creates an extra row at the bottom with the summary, as required.</p>
 <p style="color:#2b3b52;font-size:1.4em"> The SQL Query</p>
 <div style="background: #3D0C02; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
-CREATE PROCEDURE solution()<br>
+CREATE PROCEDURE totalCompetitorsSolution()<br>
 BEGIN<br>
 &nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
 &nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
@@ -152,7 +152,6 @@ END<br>
 </ul>
 </li>
 </ul>
-<p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
 <p style="color:#2b3b52;font-size:1.4em">The <strong>candidates</strong> table</p>
   <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: separate"> <tbody> <tr></tr>
 <tbody><tr>
@@ -220,18 +219,18 @@ END<br>
 </tr>
 </tbody></table>
       
-<p>When the following SQL Query is executed on the <strong>foreignCompetitors</strong> table, it results into a table with two columns: <strong>country</strong> and <strong>competitors</strong>. The first column contains the country name, and the second column contains the number of competitors in this country. The resulting table is sorted by the country names in <em>ascending</em> order. The UNION clause creates an extra row at the bottom with the summary, as required.</p>
-<p style="color:#2b3b52;font-size:1.4em"> The SQL Query</p>
+<p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
+<p style="color:#2b3b52;font-size:1.4em"> The SQL Procedure</p>
 <div style="background: #3D0C02; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
-CREATE PROCEDURE solution()<br>
+CREATE PROCEDURE scholarshipSolution()<br>
 BEGIN<br>
-&nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
-&nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
-&nbsp &nbsp &nbsp &nbsp UNION<br>
-&nbsp &nbsp &nbsp &nbsp SELECT 'Total:' as country, COUNT(country) AS competitors FROM foreignCompetitors;<br>
+&nbsp &nbsp &nbsp &nbsp SELECT c.candidate_id AS student_id FROM candidates c<br>
+&nbsp &nbsp &nbsp &nbsp LEFT JOIN detentions d<br>
+&nbsp &nbsp &nbsp &nbsp ON c.candidate_id=d.student_id<br>
+&nbsp &nbsp &nbsp &nbsp WHERE d.detention_date IS NULL;<br>
 END<br>
 </code/></div>
-<p style="color:#2b3b52;font-size:1.4em"> The resulting table of the SQL query</p>
+<p style="color:#2b3b52;font-size:1.4em"> The resulting table of the SQL Procedure</p>
 <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
 <tbody><tr>
 <th>student_id</th>
