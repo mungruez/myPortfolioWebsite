@@ -480,7 +480,7 @@ header {
     margin-right: auto;
 }
 
-.markdown {
+.portfolio-item-individual-markdown {
     line-height: 1.92;
     letter-spacing: .2px;
     word-wrap: break-word;
@@ -489,7 +489,7 @@ header {
     font-size: 14px;
 }
 
-.markdown table {
+.portfolio-item-individual-markdown table {
     display: table;
     border-collapse: separate;
     box-sizing: border-box;
