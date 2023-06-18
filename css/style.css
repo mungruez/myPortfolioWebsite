@@ -487,11 +487,11 @@ header {
     word-break: break-word;
     font-family: Arial,sans-serif;
     font-size: 14px;
-    color: forestgreen; 
+    color: darkgreen; 
     max-width: fit-content;
 }
 
-.portfolio-item-individual table {
+.portfolio-table {
     display: table;
     border-collapse: separate;
     box-sizing: border-box;
