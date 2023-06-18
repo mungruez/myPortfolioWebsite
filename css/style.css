@@ -47,6 +47,7 @@ body {
     background: var(--clr-light);
     color: var(--clr-dark);
     margin: 0;
+    margin-left:12px;
     font-family: var(--ff-primary);
     font-size: var(--fs-body);
     line-height: 1.6;
@@ -498,4 +499,5 @@ header {
     text-indent: initial;
     border-spacing: 2px;
     border-color: darkblue;
+    border: 2px solid black;
 }
