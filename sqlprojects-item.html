@@ -37,64 +37,54 @@
             <img src="img/projects-08.png" alt="" class="intro__img">
         </section>
         
-        <div class="portfolio-item-individual">
-<p>This is an SQL Query to simulate picking balls at ramdom from a Hat of balls of different colors and quantities. The program randomly picks balls from the Hat until it gets the required balls. This is called an experiment so the computer determines the number of times it needs to pick balls from the Hat to get the desired result. After thousands of experiments the computer can use one simple division to calculate the complex probabilty. This is because computers can do one million mathematical operations per second</p>
-           <div style="background: slategrey; color: lightgreen; max-width: fit-content; "> <code> <br>
-CREATE PROCEDURE solution()<br>
-BEGIN<br>
-&nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
-&nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
-&nbsp &nbsp &nbsp &nbsp UNION<br>
-&nbsp &nbsp &nbsp &nbsp SELECT 'Total:' as country, COUNT(country) AS competitors FROM foreignCompetitors;<br>
-END<br>
-</code/></div>
-<div class="markdown"><p>Your company is planning to expand internationally very soon. You have been tasked with preparing a report on foreign markets and potential competitors.</p>
-<p>After some investigation, you've created a database containing a <strong>foreignCompetitors</strong> table,  which has the following structure:</p>
-<ul>
-<li><code>competitor</code>: the name of the competitor;</li>
-<li><code>country</code>: the country in which the competitor is operating.</li>
-</ul>
-<p>In your report, you need to include the number of competitors per country and an additional row at the bottom that contains a summary: <code>("Total:", total_number_of_competitors)</code></p>
-<p>Given the <strong>foreignCompetitors</strong> table, compose the resulting table with two columns: <code>country</code> and <code>competitors</code>. The first column should contain the country name, and the second column should contain the number of competitors in this country. The table should be sorted by the country names in <em>ascending</em> order. In addition, it should have an extra row at the bottom with the summary, as described above.</p>
-<p><span class="markdown-header" style="color:#2b3b52;font-size:1.4em">Example</span></p>
-<p>For the following table <strong>foreignCompetitors</strong></p>
-<table><tbody><tr>
-</tr><tr>
-<th>competitor</th>
-<th>country</th>
-</tr>
-<tr>
-<td>Acme Corp</td>
-<td>USA</td>
-</tr>
-<tr>
-<td>GLOBEX</td>
-<td>USA</td>
-</tr>
-<tr>
-<td>Openmedia</td>
-<td>France</td>
-</tr>
-<tr>
-<td>K-bam</td>
-<td>USA</td>
-</tr>
-<tr>
-<td>Hatdrill</td>
-<td>UK</td>
-</tr>
-<tr>
-<td>Hexgreen</td>
-<td>Germany</td>
-</tr>
-<tr>
-<td>D-ranron</td>
-<td>France</td>
-</tr>
-<tr>
-<td>Faxla</td>
-<td>Spain</td>
-</tr>
+<div class="portfolio-item-individual">            
+  <div class="markdown"><p>A company is planning to expand internationally very soon. You have been tasked with preparing a report on foreign markets and potential competitors.</p>
+  <p>After some investigation, you've created a database containing a <strong>foreignCompetitors</strong> table,  which has the following structure:</p>
+  <ul>
+    <li><code>competitor</code>: the name of the competitor;</li>
+    <li><code>country</code>: the country in which the competitor is operating.</li>
+  </ul>
+  <p>In your report, you need to include the number of competitors per country and an additional row at the bottom that contains a summary: <strong>("Total:", total_number_of_competitors)</strong></p>
+  <p>Given the <strong>foreignCompetitors</strong> table, compose the resulting table with two columns: <strong>country</strong> and <strong>competitors</strong>. The first column should contain the country name, and the second column should contain the number of competitors in this country. The table should be sorted by the country names in <em>ascending</em> order. In addition, it should have an extra row at the bottom with the summary, as described above.</p>
+  <p><span class="markdown" style="color:#2b3b52;font-size:1.4em">Example</span></p>
+  <p>For the following table <strong>foreignCompetitors</strong></p>
+  <table><tbody><tr>
+  </tr><tr>
+    <th>competitor</th>
+    <th>country</th>
+  </tr>
+  <tr>
+    <td>Acme Corp</td>
+    <td>USA</td>
+  </tr>
+  <tr>
+    <td>GLOBEX</td>
+    <td>USA</td>
+  </tr>
+  <tr>
+    <td>Openmedia</td>
+    <td>France</td>
+  </tr>
+  <tr>
+    <td>K-bam</td>
+    <td>USA</td>
+  </tr>
+  <tr>
+    <td>Hatdrill</td>
+    <td>UK</td>
+  </tr>
+  <tr>
+    <td>Hexgreen</td>
+    <td>Germany</td>
+  </tr>
+  <tr>
+    <td>D-ranron</td>
+    <td>France</td>
+  </tr>
+  <tr>
+    <td>Faxla</td>
+    <td>Spain</td>
+  </tr>
 </tbody></table>
 <p>the output should be</p>
 <table>
@@ -136,6 +126,15 @@ END<br>
 </li>
 </ul>
 </div>
+            <div style="background: slategrey; color: lightgreen; max-width: fit-content; "> <code> <br>
+CREATE PROCEDURE solution()<br>
+BEGIN<br>
+&nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
+&nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
+&nbsp &nbsp &nbsp &nbsp UNION<br>
+&nbsp &nbsp &nbsp &nbsp SELECT 'Total:' as country, COUNT(country) AS competitors FROM foreignCompetitors;<br>
+END<br>
+</code/></div>
 <br><br>
 <img src="img/PythonDjangoCertificate.png" alt="">
 <p><i>Udemy Python Django Certificate</i></p>
