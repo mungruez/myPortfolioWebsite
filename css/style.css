@@ -488,6 +488,7 @@ header {
     font-family: Arial,sans-serif;
     font-size: 14px;
     background-color: slategrey;
+    background: slategrey;
 }
 
 .portfolio-item-individual table {
