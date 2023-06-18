@@ -487,8 +487,9 @@ header {
     word-break: break-word;
     font-family: Arial,sans-serif;
     font-size: 14px;
-    background-color: slategrey;
-    background: slategrey;
+    background: slategrey; 
+    color: lightgreen; 
+    max-width: fit-content;
 }
 
 .portfolio-item-individual table {
