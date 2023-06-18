@@ -485,6 +485,8 @@ header {
     letter-spacing: .2px;
     word-wrap: break-word;
     word-break: break-word;
+    font-family: Arial,sans-serif;
+    font-size: 14px;
 }
 
 .markdown table {
