@@ -487,9 +487,10 @@ header {
     word-break: break-word;
     font-family: Arial,sans-serif;
     font-size: 14px;
+    background-color: slategrey;
 }
 
-.portfolio-item-individual code table {
+.portfolio-item-individual table {
     display: table;
     border-collapse: separate;
     box-sizing: border-box;
