@@ -38,12 +38,12 @@
         </section>
         
 <div class="portfolio-item-individual">            
-  <div class="markdown"><p>A company is planning to expand internationally very soon. You have been tasked with preparing a report on foreign markets and potential competitors. After some investigation, you've created a database containing a <strong>foreignCompetitors</strong> table,  which has the following structure:</p>
+  <div class="markdown"><p>A company is planning to expand internationally very soon. An SQL Query is needed for preparing a report on foreign markets and potential competitors. The compant has created a database containing a <strong>foreignCompetitors</strong> table,  which has the following structure:</p>
   <ul>
     <li><code>competitor</code>: the name of the competitor;</li>
     <li><code>country</code>: the country in which the competitor is operating.</li>
   </ul>
-  <p>In your report, you need to include the number of competitors per country and an additional row at the bottom that contains a summary: <strong>("Total:", total_number_of_competitors)</strong> Given the <strong>foreignCompetitors</strong> table, compose the resulting table with two columns: <strong>country</strong> and <strong>competitors</strong>. The first column should contain the country name, and the second column should contain the number of competitors in this country. The table should be sorted by the country names in <em>ascending</em> order. In addition, it should have an extra row at the bottom with the summary, as described above.</p>
+  <p>The report, needs to include the number of competitors per country and an additional row at the bottom that contains a summary: <strong>("Total:", total_number_of_competitors)</strong> </p>
   <p style="color:#2b3b52;font-size:1.4em">For The <strong>foreignCompetitors</strong> Table</p>
   <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: separate"> <tbody> <tr></tr>
   <tr>
@@ -83,8 +83,19 @@
     <td>Spain</td>
   </tr>
 </tbody></table>
-<p>the output should be</p>
-<table>
+<p>When the SQL Query is executed on the <strong>foreignCompetitors</strong> table, it results into a table with two columns: <strong>country</strong> and <strong>competitors</strong>. The first column should contain the country name, and the second column should contain the number of competitors in this country. The resulting table is sorted by the country names in <em>ascending</em> order. In addition, it has an extra row at the bottom with the summary, as required.</p>
+<p style="color:#2b3b52;font-size:1.4em"> The SQL Query</p>
+<div style="background: slategrey; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
+CREATE PROCEDURE solution()<br>
+BEGIN<br>
+&nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
+&nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
+&nbsp &nbsp &nbsp &nbsp UNION<br>
+&nbsp &nbsp &nbsp &nbsp SELECT 'Total:' as country, COUNT(country) AS competitors FROM foreignCompetitors;<br>
+END<br>
+</code/></div>
+<p style="color:#2b3b52;font-size:1.4em"> The resulting table of the SQL query</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
 <tbody><tr>
 <th>country</th>
 <th>competitors</th>
@@ -123,15 +134,7 @@
 </li>
 </ul>
 </div>
-            <div style="background: slategrey; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
-CREATE PROCEDURE solution()<br>
-BEGIN<br>
-&nbsp &nbsp &nbsp &nbsp SELECT DISTINCT country, COUNT(country) AS competitors FROM foreignCompetitors<br>
-&nbsp &nbsp &nbsp &nbsp GROUP BY country<br>
-&nbsp &nbsp &nbsp &nbsp UNION<br>
-&nbsp &nbsp &nbsp &nbsp SELECT 'Total:' as country, COUNT(country) AS competitors FROM foreignCompetitors;<br>
-END<br>
-</code/></div>
+            
 <br><br>
 <img src="img/PythonDjangoCertificate.png" alt="" style="max-height=760">
 <p><i>Udemy Python Django Certificate</i></p>
