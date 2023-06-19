@@ -211,7 +211,7 @@ END<br>
 </tr>
 </tbody></table>
       
-<p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql)</strong></p>
+<p>The following SQL Procedure finds which students should get scholarships this year. From the <strong>candidates</strong> and <strong>detentions</strong> tables the Procedure returns a table with a single <code>student_id</code> column containing the IDs of the students who should get scholarships - students from the <strong>candidates</strong> table who've never gotten a detention. The IDs of the students in the resulting table is sorted in ascending order.<strong>[execution time limit] 10 seconds (mysql/ms-sql/oracle)</strong></p>
 <p style="color:#2b3b52;font-size:1.4em"> The SQL Procedure</p>
 <div style="background: #3D0C02; max-width: fit-content; "> <code style="color: lightgreen;"> <br>
 CREATE PROCEDURE scholarshipSolution()<br>
@@ -234,7 +234,7 @@ END<br>
 <td>103</td>
 </tr>
 </tbody></table>
-    <p>Only Gerbern Abbey and Nita Simons never got detention, so they will get the scholarships this year.The dates in the example are given in the <em>YYYY-MM-DD</em> format.</p>
+    <p>Only Gerbern Abbey and Nita Simons never got detention, so they will get the scholarships this year.The dates are given in the <em>YYYY-MM-DD</em> format.</p>
 </div><br><br><hr><br><br>
 
 
