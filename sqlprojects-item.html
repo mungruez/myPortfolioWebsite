@@ -322,14 +322,34 @@ END<br>
 </div><br>
         
 <section class="intro">
-    <h1 class="section__title section__title--intro">Here is <strong>a Python Web Scraper</strong></h1>
-    <p class="section__subtitle section__subtitle--intro">A Python web scraper that uses Selenium and Scrapy</p>
+    <h1 class="section__title section__title--intro">Here is my <strong>Database Normalization</strong> Section</h1>
+    <p class="section__subtitle section__subtitle--intro">Unique Keys,Relationships,Business Rules,3NF</p>
     <img src="img/projects-08.png" alt="" class="intro__img">
 </section>
         
         <div class="portfolio-item-individual">
-            <p>This is a Python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through a web driver and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python. Install Python version 3, Scrapy and Selenium to run this script.</p>
-            <p> <code> <br>
+            <p>All Software Engineers are familiar with Relational Databases. Data is stored in tables known as Entities with each table consisting of columns known as attributes or fields. Each table typically contains a Primary Key which cannot be NULL, must composed of a unique minimum set of colums.</p>
+            <p>Business Rules</p>
+		<ul>
+		    <li>
+			Brief and precise descriptions of policies or procedures within an organization.     
+		    </li>
+		    <li>
+			Business rules are used to define Entitis(tables), Attributes(fields/columns), relationships and constraints.		
+		    </li>
+			<li>The main source of business ruls come from managers, policy makers, end users and written documenntation.</li>
+	    </ul>
+		<p>Relationship Types</p>
+		<ul>
+		    <li>
+			One-to-One(1:1) - A retail company may require that each of its stores be managed by a single employee. in turn, each store manager who is an employee, manages only a single store. The relationship between EMPLOYEE manages STORE is 1:1.     
+		    </li>
+		    <li>
+			One-to-Many(1:M) - 1 painter paints MANY paintigs and 1 painting is painted by 1 painter. The relationship between PAINTER paints PAINTING is 1:M.		
+		    </li>
+			<li>Many-to-Many(M:N) - 1 student can take MANY classes and 1 class can have MANY students. The relationship between STUDENT and CLASS is M:N.</li>
+	    </ul>
+		<p> <code> <br>
 import scrapy<br>
 from scrapy.utils.project import get_project_settings<br>
 from selenium import webdriver<br>
