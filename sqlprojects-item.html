@@ -338,7 +338,7 @@ END<br>
 			Business rules are used to define Entitis(tables), Attributes(fields/columns), relationships and constraints.		
 		    </li>
 			<li>The main source of business ruls come from managers, policy makers, end users and written documenntation.</li>
-	    </ul>
+	        </ul>
 		<p>Relationship Types</p>
 		<ul>
 		    <li>
@@ -349,116 +349,50 @@ END<br>
 		    </li>
 			<li>Many-to-Many(M:N) - 1 student can take MANY classes and 1 class can have MANY students. The relationship between STUDENT and CLASS is M:N.</li>
 	    </ul>
-		<p> <code> <br>
-import scrapy<br>
-from scrapy.utils.project import get_project_settings<br>
-from selenium import webdriver<br>
-#import the selenium web driver and use its path<br>
-<br>
-class StjacksSeleniumSpider(scrapy.Spider):<br>
-#A Python Scrapy Spider that uses Selenium<br>
-<br>
-&nbsp &nbsp &nbsp &nbsp name = 'stjacks_spider'<br>
-&nbsp &nbsp &nbsp &nbsp start_urls = ["https://stjacks.com/ElSalvador"]<br>
-&nbsp &nbsp &nbsp &nbsp custom_settings = {}<br>
-&nbsp &nbsp &nbsp &nbsp def parse(self, response):<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp settings = get_project_settings()<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver_path = '/usr/local/bin/chromedriver'<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = webdriver.ChromeOptions()<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = options.headless = True<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver = webdriver.Chrome(driver_path, options=options)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get('https://www.stjacks.com/ElSalvador')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_extracted = response.xpath("//span[contains(@class, 'mega-nav-link-in')]/text()").extract()<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href = set(categories_extracted)<br>               
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninas")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninos")<br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for category_href in categories_href:<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = str(category_href)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/r')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/n')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if len(ca)<1: <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp continue<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Novedades':<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Ninos' :<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/6?{ca}"")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>               
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Ninas':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/5?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Bebes':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebas'<br>                 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/1?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Accesorios':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/10?RopaInteriory{ca}=true")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='BASIKOS':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/12?Basikos=true")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Toddlers':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinas'<br>                 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/3?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Juvenil':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/7?Damas")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Damas'<br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'),<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback=self.parse_product,<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cb_kwargs = {<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp }<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp )<br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Bebas':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebos'<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/2?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='ToddlerNinas':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinos'<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/4?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Damas':<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Caballeros'<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/8?{ca}")<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Caballeros' or ca=='ToddlerNinos' or ca=='Bebos':<br>                
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br> 
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'), <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback = self.parse_product, <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cb_kwargs = { <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp } <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) <br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.quit() <br><br>
-                
-&nbsp &nbsp &nbsp &nbsp def parse_product(self, response, category, images):<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p= str(response.xpath("//div[@id='detalle-derecha']/div[2]/div[2]/p/text()").get())<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.replace('$', '').replace(',', '')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip('/r').strip('/n')<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip()<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if len(p)<1:<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspp="0.00"<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp #yield the results as a dictionary<br><br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield {<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'name': response.xpath("//h1[@class='product-title noShowMobil']/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'offer-price': float(p),<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'category': category,<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sub-category': response.xpath("//div[@id='detalle-derecha']/div[1]/div[1]/p/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sku': response.xpath("//div[@id='detalle-derecha']/p/text()").get(),<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'images': images,<br>
-&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp}<br>
-</code/></p>
+		<p>Now, consider that a Room Reservation System for clients would need to be able to allow booking of guests. Information need would consist of the following: </p>
+		<ul>
+			<li> Guest name</li>
+			<li>Guest Contact number</li>
+			<li>Guest email</li>
+			<li>Room Type for the types of room they would like (King standard, king Suite, Queen Standad, etc) </li>
+			<li>Room Number(s) booked</li>
+			<li>Check in date</li>
+			<li>Check out date</li>
+			<li>Default daily cost of room</li>
+			<li>Codt that was actually charged for the room</li>
+			<li>A unique reservation number</li>
+			<li>Guest credit card, expiry date and card type(MC,VISA,etc)</li>
+			<li>Total cost for room(s)</li>
+			<li>Number of days stayed</li>
+		</ul>
+		<p>Reservation System Business Rules</p>
+		<ul>
+		    <li>
+			Assume more than one guest may use the same phone number or credit card when booking a room.     
+		    </li>
+		    <li>
+			Guests cannot have the same email address when booking a room.		
+		    </li>
+			<li>Assume room rates remain the same during a stay period and taxes can be ignored.</li>
+	    </ul>
+		<p style="color:#2b3b52;font-size:1.4em"> 1NF </p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Phone</th>
+   <th>email</th>
+   <th>pRoom#</th>
+   <th>RoomType</th>
+   <th>CheckIn</th>
+   <th>CheckOut</th>
+   <th>RoomRate</th>
+   <th>ActualRoomRate</th>
+   <th>ReservationNumber</th>
+   <th>Card#</th>
+   <th>CardType</th>
+   <th>CardExpiry</th>
+ </tr>
+</tbody></table><p> </p>
+	
             <img src="img/screenshot-stjacksjson.png" alt="">
             <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
             <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
@@ -468,15 +402,15 @@ class StjacksSeleniumSpider(scrapy.Spider):<br>
         
         <section class="intro">
             <h1 class="section__title section__title--intro">
-                Here is <strong>my Django section</strong>
+                Here is my<strong>No SQL Databaases</strong> Section
             </h1>
-            <p class="section__subtitle section__subtitle--intro">Django</p>
+            <p class="section__subtitle section__subtitle--intro">GraphQL, ORM, Firebase, MongoDB, Appwrite</p>
             <img src="img/projects-08.png" alt="" class="intro__img">
         </section>
         
         <div class="portfolio-item-individual">
             
-  <p>Django is a loosely coupled, server side web application development framework written in Python that responds to requests and constructs a response for the client.</p>  
+  <p>In 2023 no-SQL Databases have become popular for modern web applications like Favebook. Earlier programmers first taught that the most efficient way to query a database is to Noramlize it. Today the excess memeory is used to hold redundant data instead of using relationships and tables contain lists instead of foreign keys. This results in wasting memory but faster queries than SQL relational Databases.</p>  
   <p>Whenever a request is received by the Django server , the server looks for a matching pattern in the url Patterns defined for the project, a 404 error is returned if no match id found. If a match id found the view file associated with the url is executed and sent as the response.</p> 
   <p>Django uses MVT the controller is the view in Django. Views are based on data from models.</p>  
   <p>In Django there can be many apps and each app has its own urls.py file. In the urls.py file for the project the individual urls.py files are used by using the includes function.<p/> 
