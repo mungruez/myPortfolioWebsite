@@ -482,14 +482,14 @@ END<br>
    <th>Actual Room Rate</th>
  </tr>
 </tbody></table><p>All transitive dependencies have been removed and the result is five tables in 3NF. Card# is a primary key for Card Type and card Expiry. Business Rules allow guests to have similar names or phone numbers but not email. The new RoomType table  has a 1:M relationship with the Room# table, similarly the email table has a 1:M relationship with the Resevation Number table. The Card# table has a 1:M relationship with the Reservation Number table. The Room# table and the Reservation Number table both have 1:M relationships with the Room# + Reservation Number table</p>		
-		
 	<p><strong> 3NF - </strong></p>
 	<ul>
 		<li>Table(s) must meet all requirements of 2NF</li>
 		<li>Remove all transitive dependencies</li>
-	</ul>
-		
-        <img src="img/screenshot-stjacksjson.png" alt="">
+	</ul>	
+	<h3>The Final Normalized Databse</h3>
+        <img src="img/normalizationpic.png" alt="">
+	<p>Id fields were also added to the final result so that primary keys do not contain company data.</p>
 </div>
         
         
