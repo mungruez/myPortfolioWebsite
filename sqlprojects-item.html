@@ -376,11 +376,13 @@ END<br>
 			<li>Assume room rates remain the same during a stay period and taxes can be ignored.</li>
 	    </ul>
 		<p style="color:#2b3b52;font-size:1.4em"> 1NF </p>
+		<p style="color:#2b3b52;font-size:1.4em"> PK - Room#, Reservation Number</p>
 <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
  <tbody><tr>
+   <th>Name</th>
    <th>Phone</th>
    <th>email</th>
-   <th>pRoom#</th>
+   <th>Room#</th>
    <th>RoomType</th>
    <th>CheckIn</th>
    <th>CheckOut</th>
@@ -391,8 +393,62 @@ END<br>
    <th>CardType</th>
    <th>CardExpiry</th>
  </tr>
-</tbody></table><p> </p>
-	
+</tbody></table><p>Here Room# and Reservation Number must be combined to form a Composite Primary Key and the table is in first Normal form </p>
+		<p><strong> 1NF - </strong></p>
+		<ul>
+			<li>Each colummn value must be a single value only, i.e Atomic</li>
+			<li> Remove repeating groups (No Lists,No Arrays, etc)</li>
+			<li> each column must be unique</li>
+			<li> No two rows in a table</li>
+		</ul>
+
+
+<p style="color:#2b3b52;font-size:1.4em"> 2NF </p>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Room#</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Room#</th>
+   <th>RoomType</th>
+   <th>RoomRate</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Reservation Number</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Name</th>
+   <th>Phone</th>
+   <th>email</th>
+   <th>CheckIn</th>
+   <th>CheckOut</th>
+   <th>RoomRate</th>
+   <th>Card#</th>
+   <th>CardType</th>
+   <th>CardExpiry</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Room# + ReservationNumber</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Reservation Number</th>
+   <th>Actual Room Rate</th>
+ </tr>
+</tbody></table>
+		
+<p><strong> 2NF - </strong></p>
+<ul>
+	<li>Table(s) must meet all requirements of 1NF</li>
+	<li>All of its non-key attributes are deoendant on the primary key</li>
+	<li>Remove all partial dependencies</li>
+	<li>Tables with a single column key are in typically in 2NF</li>
+</ul>
+
+		
+		<p><strong> 3NF - </strong></p>
+		<ul>
+			<li>Table(s) must meet all requirements of 2NF</li>
+			<li>Remove all transitive dependencies</li>
+		</ul>
+		
             <img src="img/screenshot-stjacksjson.png" alt="">
             <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
             <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
