@@ -402,12 +402,11 @@ END<br>
 			<li> No two rows in a table</li>
 		</ul>
 
-
+<hr>
 <p style="color:#2b3b52;font-size:1.4em"> 2NF </p>
 <p style="color:#2b3b52;font-size:1.3em"> PK - Room#</p>
 <table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
  <tbody><tr>
-   <th>Room#</th>
    <th>RoomType</th>
    <th>RoomRate</th>
  </tr>
@@ -420,7 +419,6 @@ END<br>
    <th>email</th>
    <th>CheckIn</th>
    <th>CheckOut</th>
-   <th>RoomRate</th>
    <th>Card#</th>
    <th>CardType</th>
    <th>CardExpiry</th>
@@ -432,8 +430,7 @@ END<br>
    <th>Reservation Number</th>
    <th>Actual Room Rate</th>
  </tr>
-</tbody></table>
-		
+</tbody></table> <p>All partial dependencies are removed as in the Room# Table Room Type and Room Rate can be known once the Room# is known. Name,Phone,email,Check in,Check out,Card# Card Type and Card Expiry can be knowm once the Reservation Number is known. Actual Room Rate remains in the initial table because if the Reservation  Number or Room# is known the Actual Room Rate cannot be derrived</p>	
 <p><strong> 2NF - </strong></p>
 <ul>
 	<li>Table(s) must meet all requirements of 1NF</li>
@@ -441,18 +438,59 @@ END<br>
 	<li>Remove all partial dependencies</li>
 	<li>Tables with a single column key are in typically in 2NF</li>
 </ul>
-
+<hr>
+<p style="color:#2b3b52;font-size:1.4em"> 3NF </p>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Card#</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>CardType</th>
+   <th>CardExpiry</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - email</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Name</th>
+   <th>Phone</th>
+ </tr>
+</tbody></table>
+		<p style="color:#2b3b52;font-size:1.3em"> PK - Room Type</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>RoomRate</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Room#</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>RoomType</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Reservation Number</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>CheckIn</th>
+   <th>CheckOut</th>
+    <th>Card#</th>
+   <th>email</th>
+ </tr>
+</tbody></table>
+<p style="color:#2b3b52;font-size:1.3em"> PK - Room# + ReservationNumber</p>
+<table border="1" style="border: 2px solid black; border-spacing: 2px; border-color: black; background-color: lightblue; border-collapse: collapse">
+ <tbody><tr>
+   <th>Reservation Number</th>
+   <th>Actual Room Rate</th>
+ </tr>
+</tbody></table><p>All transitive dependencies have been removed and the result is five tables in 3NF. Card# is a primary key for Card Type and card Expiry. Business Rules allow guests to have similar names or phone numbers but not email. The new RoomType table  has a 1:M relationship with the Room# table, similarly the email table has a 1:M relationship with the Resevation Number table. The Card# table has a 1:M relationship with the Reservation Number table. The Room# table and the Reservation Number table both have 1:M relationships with the Room# + Reservation Number table</p>		
 		
-		<p><strong> 3NF - </strong></p>
-		<ul>
-			<li>Table(s) must meet all requirements of 2NF</li>
-			<li>Remove all transitive dependencies</li>
-		</ul>
+	<p><strong> 3NF - </strong></p>
+	<ul>
+		<li>Table(s) must meet all requirements of 2NF</li>
+		<li>Remove all transitive dependencies</li>
+	</ul>
 		
-            <img src="img/screenshot-stjacksjson.png" alt="">
-            <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
-            <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
-        </div>
+        <img src="img/screenshot-stjacksjson.png" alt="">
+</div>
         
         
         
