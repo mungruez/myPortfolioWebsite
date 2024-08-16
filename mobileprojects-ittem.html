@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Zaakir Portfolio Website</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" crossorigin="anonymous" />  
+        <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet">         
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body>
+        <header>
+            <div class="logo">
+                <img src="img/devzaak.png" alt="">
+            </div>
+            <button class="nav-toggle" aria-label="toggle navigation">
+                <span class="hamburger"></span>
+            </button>
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="index.html" class="nav__link">Home</a></li>
+                    <li class="nav__item"><a href="index.html#services" class="nav__link">My Services</a></li>
+                    <li class="nav__item"><a href="index.html#about" class="nav__link">About me</a></li>
+                    <li class="nav__item"><a href="index.html#work" class="nav__link">My Work</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+
+        <section class="intro">
+            <h1 class="section__title section__title--intro">
+                Here is <strong>code from my Mobile App</strong>
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">"Learn Python" Mobile App</p>
+            <img src="img/projects-08.png" alt="" class="intro__img">
+        </section>
+        
+        <div class="portfolio-item-individual">
+<p>A React Native Project with Expo and React Navigation. The program randomly picks balls from the Hat until it gets the required balls. This is called an experiment so the computer determines the number of times it needs to pick balls from the Hat to get the desired result. After thousands of experiments the computer can use one simple division to calculate the complex probabilty. This is because computers can do one million mathematical operations per second</p>
+           <p> <code> <br>
+import copy<br>
+import random<br>
+#only copy.deecopy() and random.choice(list) are used<br>
+<br>
+class Hat:<br>
+#Class that simulates the probabilty of selecting balls in a hat<br>
+<br>
+&nbsp &nbsp &nbsp &nbsp def __init__(self, **kwargs):<br>
+      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp self.contents = []<br>
+      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp for key, value in kwargs.items():<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp for i in range(value):<br>
+            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp self.contents.append(key)<br>
+
+  &nbsp &nbsp &nbsp &nbsp def draw(self, number):<br>
+  &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp simulated_balls = []<br>
+  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if number >= len(self.contents):<br>
+        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspreturn self.contents<br>
+<br>
+    # Pick a ball at random and remove from the bag<br>
+      &nbsp &nbsp &nbsp &nbspfor i in range(number):<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsprandom_ball = random.choice(self.contents)<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspsimulated_balls.append(random_ball)<br>
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspself.contents.pop(self.contents.index(random_ball))<br>
+  
+      &nbsp &nbsp &nbsp &nbspreturn simulated_balls<br>
+    
+def experiment(hat, expected_balls, num_balls_drawn, num_experiments):  <br>
+    &nbsp &nbsp &nbsp &nbspn = 0<br>
+<br>    
+    &nbsp &nbsp &nbsp &nbspfor i in range(num_experiments):<br>
+        &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsphat_copy = copy.deepcopy(hat)<br>
+        &nbsp &nbsp &nbsp &nbsprandom_draw = hat_copy.draw(num_balls_drawn)<br>
+<br>    
+    # the result as a dict:<br>
+        &nbsp &nbsp &nbsp &nbsprandom_dict = {ball: random_draw.count(ball) for ball in set(random_draw)}<br>
+<br>
+    # Compare randomly drawn balls to the desired result:<br>
+        &nbsp &nbsp &nbsp &nbs presult = True<br>
+        &nbsp &nbsp &nbsp &nbsp for k, v in expected_balls.items():<br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if k not in random_dict or random_dict[k] < expected_balls[k]:<br>
+                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspresult = False<br>
+                &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspbreak<br>
+<br>
+        &nbsp &nbsp &nbsp &nbspif result:<br>
+            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspn += 1<br>
+<br>
+    &nbsp &nbsp &nbsp &nbspreturn n/num_experiments<br>
+</code/></p>
+            <p>This program show that a computer making a random sample thousands of times can calculate the actual probabilty of a desired result </p>
+            <p>Computers can also simulate other events, such as the motion of a flock of birds.</p>
+            <br><br><br><br>
+            <img src="img/PythonDjangoCertificate.png" alt="">
+            <p><i>Udemy Python Django Certificate</i></p>
+        </div><br>
+        
+        
+        
+        
+        
+        
+        <section class="intro">
+            <h1 class="section__title section__title--intro">
+                Here is <strong>a Python Web Scraper</strong>
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">A Python web scraper that uses Selenium and Scrapy</p>
+            <img src="img/projects-08.png" alt="" class="intro__img">
+        </section>
+        
+        <div class="portfolio-item-individual">
+            <p>This is a Python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through a web driver and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python. Install Python version 3, Scrapy and Selenium to run this script.</p>
+            <p> <code> <br>
+import scrapy<br>
+from scrapy.utils.project import get_project_settings<br>
+from selenium import webdriver<br>
+#import the selenium web driver and use its path<br>
+<br>
+class StjacksSeleniumSpider(scrapy.Spider):<br>
+#A Python Scrapy Spider that uses Selenium<br>
+<br>
+&nbsp &nbsp &nbsp &nbsp name = 'stjacks_spider'<br>
+&nbsp &nbsp &nbsp &nbsp start_urls = ["https://stjacks.com/ElSalvador"]<br>
+&nbsp &nbsp &nbsp &nbsp custom_settings = {}<br>
+&nbsp &nbsp &nbsp &nbsp def parse(self, response):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp settings = get_project_settings()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver_path = '/usr/local/bin/chromedriver'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = webdriver.ChromeOptions()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp options = options.headless = True<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver = webdriver.Chrome(driver_path, options=options)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get('https://www.stjacks.com/ElSalvador')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_extracted = response.xpath("//span[contains(@class, 'mega-nav-link-in')]/text()").extract()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href = set(categories_extracted)<br>               
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninas")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp categories_href.add("Ninos")<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for category_href in categories_href:<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = str(category_href)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/r')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca = ca.strip('/n')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if len(ca)<1: <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp continue<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Novedades':<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Ninos' :<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/6?{ca}"")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>               
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Ninas':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/5?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Bebes':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebas'<br>                 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/1?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Accesorios':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/10?RopaInteriory{ca}=true")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='BASIKOS':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/12?Basikos=true")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Toddlers':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinas'<br>                 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/3?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Juvenil':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/7?Damas")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Damas'<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'),<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback=self.parse_product,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cb_kwargs = {<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp }<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp )<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Bebas':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Bebos'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/2?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='ToddlerNinas':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='ToddlerNinos'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/4?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp elif ca=='Damas':<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ca='Caballeros'<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.get(f"https://stjacks.com/ElSalvador/Productos/Categorias/8?{ca}")<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.implicitly_wait(19)<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if ca=='Caballeros' or ca=='ToddlerNinos' or ca=='Bebos':<br>                
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_links = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp products_images = driver.find_elements_by_xpath('//div[@class="prds-ind"]/div/div/a/div')<br> 
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp for link,image in zip(products_links,products_images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield scrapy.Request(<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp link.get_attribute('href'), <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp callback = self.parse_product, <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp cb_kwargs = { <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "category": ca,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp "images": image.get_attribute('data-setbg')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp } <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) <br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp driver.quit() <br><br>
+                
+&nbsp &nbsp &nbsp &nbsp def parse_product(self, response, category, images):<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p= str(response.xpath("//div[@id='detalle-derecha']/div[2]/div[2]/p/text()").get())<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.replace('$', '').replace(',', '')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip('/r').strip('/n')<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp p = p.strip()<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if len(p)<1:<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbspp="0.00"<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp #yield the results as a dictionary<br><br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp yield {<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'name': response.xpath("//h1[@class='product-title noShowMobil']/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'offer-price': float(p),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'category': category,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sub-category': response.xpath("//div[@id='detalle-derecha']/div[1]/div[1]/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'sku': response.xpath("//div[@id='detalle-derecha']/p/text()").get(),<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 'images': images,<br>
+&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp}<br>
+</code/></p>
+            <img src="img/screenshot-stjacksjson.png" alt="">
+            <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
+            <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
+        </div>
+        
+        
+        
+        <section class="intro">
+            <h1 class="section__title section__title--intro">
+                Here is <strong>my Django section</strong>
+            </h1>
+            <p class="section__subtitle section__subtitle--intro">Django</p>
+            <img src="img/projects-08.png" alt="" class="intro__img">
+        </section>
+        
+        <div class="portfolio-item-individual">
+            
+  <p>Django is a loosely coupled, server side web application development framework written in Python that responds to requests and constructs a response for the client.</p>  
+  <p>Whenever a request is received by the Django server , the server looks for a matching pattern in the url Patterns defined for the project, a 404 error is returned if no match id found. If a match id found the view file associated with the url is executed and sent as the response.</p> 
+  <p>Django uses MVT the controller is the view in Django. Views are based on data from models.</p>  
+  <p>In Django there can be many apps and each app has its own urls.py file. In the urls.py file for the project the individual urls.py files are used by using the includes function.<p/> 
+            <p><i>Below is the urls.py file for a Django project with three apps , a projects app , a users app and an api app.</i></p>
+            <p> <code> <br>
+                
+<pre>from django.contrib import admin
+from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.auth import views as auth_views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('projects/', include('projects.urls')),
+    path('', include('users.urls')),
+    path('api/', include('api.urls')),
+
+    path('reset_password/', auth_views.PasswordResetView.as_view(template_name="reset_password.html"),
+         name="reset_password"),
+
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(template_name="reset_password_sent.html"),
+         name="password_reset_done"),
+
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(template_name="reset.html"),
+         name="password_reset_confirm"),
+
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(template_name="reset_password_complete.html"),
+         name="password_reset_complete"),
+]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)</pre>
+
+     </code/></p><br><br><br>
+     
+     
+  <p>A model in Django is a Python class derived from Django.db.models. A model is used to represent a table and map database entities to a table.</p>
+  <p><i>Below is an example of a models.py file for a Django Application. There are three models in this file, A Project model, A Review model and a Tag model. The Review model related to the project model by using a foreign key. Both the Project model and review model are foreign keys in the owner Profile model not shown.</i></p>
+  
+  <p> <code> <br>
+                
+<pre>from django.db import models
+import uuid
+
+from django.db.models.deletion import CASCADE
+from users.models import Profile
+# Create your models here.
+
+class Project(models.Model):
+    owner = models.ForeignKey(
+        Profile, null=True, blank=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    description = models.TextField(null=True, blank=True)
+    featured_image = models.ImageField(
+        null=True, blank=True, default="default.jpg")
+    demo_link = models.CharField(max_length=2000, null=True, blank=True)
+    source_link = models.CharField(max_length=2000, null=True, blank=True)
+    tags = models.ManyToManyField('Tag', blank=True)
+    vote_total = models.IntegerField(default=0, null=True, blank=True)
+    vote_ratio = models.IntegerField(default=0, null=True, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ['-vote_ratio', '-vote_total', 'title']
+
+    @property
+    def imageURL(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = ''
+        return url
+
+    @property
+    def reviewers(self):
+        queryset = self.review_set.all().values_list('owner__id', flat=True)
+        return queryset
+
+    @property
+    def getVoteCount(self):
+        reviews = self.review_set.all()
+        upVotes = reviews.filter(value='up').count()
+        totalVotes = reviews.count()
+
+        ratio = (upVotes / totalVotes) * 100
+        self.vote_total = totalVotes
+        self.vote_ratio = ratio
+
+        self.save()
+
+
+class Review(models.Model):
+    VOTE_TYPE = (
+        ('up', 'Up Vote'),
+        ('down', 'Down Vote'),
+    )
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    project = models.ForeignKey(Project, on_delete=models.CASCADE)
+    body = models.TextField(null=True, blank=True)
+    value = models.CharField(max_length=200, choices=VOTE_TYPE)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+    class Meta:
+        unique_together = [['owner', 'project']]
+
+    def __str__(self):
+        return self.value
+
+class Tag(models.Model):
+    name = models.CharField(max_length=200)
+    created = models.DateTimeField(auto_now_add=True)
+    id = models.UUIDField(default=uuid.uuid4, unique=True,
+                          primary_key=True, editable=False)
+
+    def __str__(self):
+        return self.name</pre>
+
+</code/></p><br><br><br>
+
+
+
+  <p> Serialisation is the process of converting Django models into other formats such as JSON, XML, CSV, etc.</p>
+  <p><i> Below is the serializers.py file for the same Django project mentioned above. the file contains all serializers for the entire project including the Profile serializer. Notice the inner meta class is used to define which fields of the model will be serialized. Also the Profile serializer uses a method field which must be obtained fram a function beginning with get_ , which is in this case get-reviews</i></p>
+  <p> <code> <br>
+                
+<pre>from rest_framework import serializers
+from projects.models import Project, Tag, Review
+from users.models import Profile
+
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
+class TagSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Tag
+        fields = '__all__'
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+    owner = ProfileSerializer(many=False)
+    tags = TagSerializer(many=True)
+    reviews = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Project
+        fields = '__all__'
+
+    def get_reviews(self, obj):
+        reviews = obj.review_set.all()
+        serializer = ReviewSerializer(reviews, many=True)
+        return serializer.data</pre>
+
+</code/></p><br><br><br>
+
+  
+  <p> Django Templates are used to dynamically generate web content  based on data passed in from the View.  The Django Templating Language parses, processes and converts the template to an HTTP response. Templates can be part of other templates in Django the extends and end block statements are used to insert sub-Templates as blocks into Templates.   
+   The Django REST framework is a Django app and framework makes the creation of REST APIs easy.</p>
+   <p><i> Below is the main template for the Django Application. The css files are loaded using static files. The navbar template is included and there is an empty block for other templates to be insterted. </i></p>
+  <p> <code> <br>
+                
+<pre>&lt;!DOCTYPE html&gt;
+{% load static %}
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8" /&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=edge" /&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;
+    &lt;link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" /&gt;
+    &lt;link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" /&gt;
+    &lt;link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" /&gt;
+    &lt;link rel="stylesheet" href="{% static 'styles/app.css' %}" /&gt;
+    &lt;title&gt;DevSearch - Connect with Developers!&lt;/title&gt;
+&lt;/head&gt;
+
+&lt;body&gt;
+    {% include 'navbar.html' %}
+
+    {% if messages %}
+
+    {% for message in messages %}
+    &lt;div class="alert  alert--{{message.tags}}"&gt;
+        &lt;p class="alert__message"&gt;{{message}}&lt;/p&gt;
+        &lt;button class="alert__close"&gt;x&lt;/button&gt;
+    &lt;/div&gt;
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% block content %}
+
+    {% endblock content %}
+&lt;/body&gt;
+&lt;script src="{% static 'uikit/app.js' %}"&gt;&lt;/script&gt;
+&lt;script src="{% static 'js/main.js' %}"&gt;&lt;/script&gt;
+&lt;/html&gt;</pre>
+</code/></p><br><br><br>
+
+  
+  <p>The Object Relational Mapper - In Django there is no need to query data with SQL. The ORM allows interacting with the database using an object of the model class. The ORM converts these SQL queries based on the database registered in the settings.py file for the Django project. A Query Set is a collection of objects from the database. A group of rows or records is returned as a Query Set.</p>  
+  <p>Middleware is a layer in the Django request, response processing pipeline. Each Middleware performs functions on the request and or response, such as gzipping, caching, and authenticating.  Javascript  is added in Django by adding script tags into templates. Javascript and CSS files can be stored using Django.contrib.staticfiles and these static files can be used in Templates by using the link tag.</p>
+  <p> The built in Django Admin interface allows making changes to database models registered in the admin.py file of the project.</p>
+  <p>A View in Django is a class or function that receives a request and returns a response. A View gets data from the database using models and passes that data to a template (usually as a context dictionary).  After passing the data, the View then sends back the rendered template to the client as an HTTP response. Views also allow redirects to urls.
+      This is a Django View written in Python. The View responds to requests by extracting a search term from the url then it uses beautiful soup to begins scraping craigslist for the extracted term. Once the list of results are fetched from craigslist the View sends the data with the response to the Template</p>
+          
+            <p> <code> <br>
+                
+<pre> def new_search(request):
+    search = request.POST.get('search')
+    models.Search.objects.create(search=search)
+    final_url = BASE_CRAIGSLIST_URL.format(quote_plus(search))
+    response = requests.get(final_url)
+    data = response.text
+    soup = BeautifulSoup(data, features='html.parser')
+
+    post_listings = soup.find_all('li', {'class': 'result-row'})
+    final_postings = []
+    for post in post_listings:
+        post_title = post.find(class_='result-title').text
+        post_url = post.find('a').get('href')
+
+        if post.find(class_='result-price'):
+            post_price = post.find(class_='result-price').text
+        else:
+            post_price = 'N/A'
+
+        if post.find(class_='result-image').get('data-ids'):
+            post_image_id = post.find(
+                class_='result-image').get('data-ids').split(',')[0].split(':')[1]
+            post_image_url = BASE_IMAGE_URL.format(post_image_id)
+        else:
+            post_image_url = 'https://craigslist.org/images/peace.jpg'
+
+        final_postings.append(
+            (post_title, post_url, post_price, post_image_url))
+
+    stuff_for_frontend = {
+        'search': search,
+        'final_postings': final_postings,
+    }
+
+    return render(request, 'my_app/new_search.html', stuff_for_frontend)</pre>
+
+</code/></p>
+
+ <p>I like Django a lot and I have been using it for over 5 years. I completed the Python Django course on Udemy by Mr. Dennis Ivy and I have recently worked with the Django REST framework to design and implement  Views, Viewsets , Filters ,Unit Tests ,Serialisers, Templates, APIs, URL patterns, Styles and Models for a Django application. I have written view sets that use recursive actions to query data in a specific order. I love programming in Python which I have used for writing a cartoon yourself web application , a few Data Science applications and numerous awesome web scrapers and scripts. This is the link to my ⭐️”Python Django Cartoon Yourself Web Application” that can also scrape craigslist and indeed:  <a href="http://codedjangolist.herokuapp.com"> http://codedjangolist.herokuapp.com </a></p>   
+  <p><i>Below is a screenshot of my Python Django Cartoon Yourself Web Application. This screenshot was taken after clicking on the green search arrow icon of the search indeed page. The screenshot shows the results provided by the app after scraping the website.</i></p>
+            <img src="img/DjangoAppwebscrapeScreenshot.png" alt="">
+               
+ <br>             
+ <p>As a Software Engineer and Computer Scientist I prefer React for developing Front Ends for web applications with many components on the page , like the Facebook user profile page for example. Applications with search bars, chat boxes, news and weather sections, post lists and user lists on one page run better when components reload only when the user makes a change to one of them.  React also provides memoization for components that render the same elements every time they receive the same props, like a component for the daily news or weather for example. Django has pagination and views that help with long list but React  has a neat library that uses the window height to help with long lists as well as pagination.  Django can be used as a  powerful backend and one of its disadvantages is that it is too bulky. Django can handle heavy traffic, APIs are easy to build and it is scalable so it is an excellent choice to use as a backend for web applications with large number of users.  </p>
+ </div>
+        
+        
+        
+        
+        
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <a href="mailto:mungruez@gmail.com" class="footer__link">mungruez@gmail.com</a>
+            <ul class="social-list">
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://codepen.io">
+                        <i class="fab fa-codepen"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://www.facebook.com/profile.php?id=100001067969244">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://twitter.com/ZaakirMungrue">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="social-list__item">
+                    <a class="social-list__link" href="https://github.com/mungruez">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </li>
+            </ul>
+        </footer>
+        
+        
+        <script src="js/index.js"></script>
+        
+    </body>
+</html>
+         
