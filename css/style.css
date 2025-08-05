@@ -565,7 +565,7 @@ buttonz::after{
 }
 
 .carousel{
-    height: 100%;
+    height: 100vh;
     margin-top: -50px;
     width: 100vw;
     overflow: hidden;
@@ -846,6 +846,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
