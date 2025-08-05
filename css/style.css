@@ -686,7 +686,7 @@ buttonz::after{
 }
 .arrows button:hover{
     background-color: #fff;
-    color: var(--clr-accent);
+    color: #27d827;
 }
 
 /* animation */
@@ -846,6 +846,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
