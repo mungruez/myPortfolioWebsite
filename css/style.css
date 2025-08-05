@@ -585,7 +585,7 @@ buttonz::after{
 .carousel .list .item .content{
     position: absolute;
     top: 9%;
-    min-width: 65vw;
+    width: 100%;
     max-width: 80vw;
     left: 50%;
     transform: translateX(-50%);
@@ -846,6 +846,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
