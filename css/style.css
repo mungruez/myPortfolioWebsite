@@ -671,7 +671,6 @@ button::after{
     max-width: 30%;
     display: flex;
     gap: 10px;
-    color: var(--clr-accent);
     align-items: center;
 }
 .arrows button{
@@ -687,7 +686,7 @@ button::after{
 }
 .arrows button:hover{
     background-color: #fff;
-    color: #000;
+    color: var(--clr-accent);
 }
 
 /* animation */
@@ -847,5 +846,6 @@ button::after{
         font-size: 30px;
     }
 }
+
 
 
