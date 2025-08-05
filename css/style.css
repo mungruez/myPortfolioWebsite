@@ -512,7 +512,7 @@ header {
     gap: 2rem;
 }
 
-button{
+buttonz{
     position: relative;
     padding: 1.5rem 3rem;
     width: 14rem;
@@ -528,18 +528,18 @@ button{
     overflow: hidden;
 }
 
-button:hover{
+buttonz:hover{
     color: var(--clr);
     text-shadow: 0 0 15px var(--clr),
     0 0 40px var(--clr);
 }
 
-button span{
+buttonz span{
     position: relative;
     z-index: 1;
 }
 
-button::before{
+buttonz::before{
     content: '';
     position: absolute;
     top: var(--y);
@@ -552,11 +552,11 @@ button::before{
     opacity: 0;
 }
 
-button:hover::before{
+buttonz:hover::before{
     opacity: 1;
 }
 
-button::after{
+buttonz::after{
     content: '';
     position: absolute;
     inset: 3px;
@@ -846,6 +846,7 @@ button::after{
         font-size: 30px;
     }
 }
+
 
 
 
