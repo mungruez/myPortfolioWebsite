@@ -1,6 +1,6 @@
 const navToggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelectorAll('.nav__link');
-const buttons = document.querySelectorAll(".btn");
+const buttons = document.querySelectorAll(".btnz");
 
 buttons.forEach((btnz) => {
     btnz.addEventListener('mousemove', (e) => {
