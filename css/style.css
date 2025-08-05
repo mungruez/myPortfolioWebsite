@@ -671,6 +671,7 @@ button::after{
     max-width: 30%;
     display: flex;
     gap: 10px;
+    color: var(--clr-accent);
     align-items: center;
 }
 .arrows button{
@@ -846,4 +847,5 @@ button::after{
         font-size: 30px;
     }
 }
+
 
