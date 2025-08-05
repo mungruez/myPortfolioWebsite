@@ -584,7 +584,7 @@ buttonz::after{
 }
 .carousel .list .item .content{
     position: absolute;
-    top: 10%;
+    top: 20%;
     width: 1140px;
     max-width: 80%;
     left: 50%;
@@ -846,6 +846,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
