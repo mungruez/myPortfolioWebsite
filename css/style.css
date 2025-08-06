@@ -396,7 +396,7 @@ header {
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-     gap: 9px;
+     gap: 38px;
 }
 
 .projects-tile {
@@ -850,6 +850,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
