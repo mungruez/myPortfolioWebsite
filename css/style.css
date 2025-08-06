@@ -396,6 +396,7 @@ header {
 .projects {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+     gap: 9px;
 }
 
 .projects-tile {
@@ -404,6 +405,9 @@ header {
 }
 
 .projects__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     transition: 
         transform 750ms cubic-bezier(.5, 0, .5, 1),
         opacity 250ms linear;
@@ -846,6 +850,7 @@ buttonz::after{
         font-size: 30px;
     }
 }
+
 
 
 
