@@ -42,6 +42,40 @@
 • Architected a flexible custom storage layer allowing users to export, share, and locally import custom techniques via compressed ZIP data archives.<br>
 • Designed an offline-first architecture with optimized, localized data structures to maximize hardware resource efficiency, rendering speeds, and user privacy.<br>
 • Managed the full production pipeline via the Google Play Console, executing builds, managing licensing, and structuring one-time billing integrations.</p>
+
+<pre><code>import * as ImagePicker from 'expo-image-picker';
+import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';
+import { View, Text, StyleSheet, Alert } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+
+const pickFighterMedia = async (target, moveId = null) => {
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== "granted") {
+        Alert.alert("Permission Denied", "Gallery access is required!");
+        return;
+    }
+
+    try {
+        isPickingRef.current = true;
+        setIsPicking(true);
+        const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], allowsEditing: false, quality: 1.0 });
+        if (res.canceled || !res.assets?.[0]?.uri) return;
+
+        const pickedUri = res.assets[0].uri;
+        const ext = getMediaFileExtension(pickedUri);
+        const cacheDir = `${FileSystem.cacheDirectory}fighter-cache/`;
+        await FileSystem.makeDirectoryAsync(cacheDir, { intermediates: true });
+        const cachedUri = `${cacheDir}${Date.now()}${ext}`;
+        await FileSystem.copyAsync({ from: pickedUri, to: cachedUri });
+
+        if (target === 'avatar') {
+            // Continuation of your logic...
+        }
+    } catch (error) {
+        console.error(error);
+    }
+};</code></pre>
+
             
            <p> <code> <br>
 import ImagePicker from expo-image-picker;<br>
