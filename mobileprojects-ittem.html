@@ -98,8 +98,10 @@ const pickFighterMedia = async (target, moveId = null) => {
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 //Scrollview to display all passwords in a horizontal list.
+                
 &lt;ScrollView style={styles.container}&gt;
     &lt;View style={styles.content}&gt;
+                
         {passwords.length === 0 ? (
             &lt;Text style={styles.noData}&gt;No Passwords To Show&lt;/Text>
         ) : (
@@ -113,12 +115,12 @@ import React, { useEffect, useRef, useState } from 'react';
         &lt;Text style={styles.subHeading}&gt;
             {editing ? "Edit Password" : "Add a Password"}
         &lt;/Text&gt;
-                &lt;TextInput
+        &lt;TextInput
             style={styles.input}
             placeholderTextColor="rgba(160, 128, 80, 0.6)"
             placeholder="Enter Website"
             value={website}
-                    onChangeText={(website) => setWebsite(website)} /&gt;
+            onChangeText={(website) => setWebsite(website)} /&gt;
 
                 &lt;TextInput
                     style={styles.input}
