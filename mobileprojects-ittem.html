@@ -98,64 +98,56 @@ const pickFighterMedia = async (target, moveId = null) => {
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
 //Scrollview to display all passwords in a horizontal list.
-<ScrollView style={styles.container}>
-            <View style={styles.content}>
+&lt;ScrollView style={styles.container}&gt;
+    &lt;View style={styles.content}&gt;
+        {passwords.length === 0 ? (
+            &lt;Text style={styles.noData}&gt;No Passwords To Show&lt;/Text>
+        ) : (
+            &lt;ScrollView ref={scrollRef} horizontal&gt;
+                &lt;View style={styles.table}&gt;
+                    {renderPasswordList()}
+                &lt;/View&gt;
+            &lt;/ScrollView&gt;
+        )}
+ 
+        &lt;Text style={styles.subHeading}&gt;
+            {editing ? "Edit Password" : "Add a Password"}
+        &lt;/Text&gt;
+                &lt;TextInput
+            style={styles.input}
+            placeholderTextColor="rgba(160, 128, 80, 0.6)"
+            placeholder="Enter Website"
+            value={website}
+                    onChangeText={(website) => setWebsite(website)} /&gt;
 
-                {passwords.length === 0 ? (
-                    <Text style={styles.noData}>
-                        No Passwords To Show
-                    </Text>
-                ) : (
-                    <ScrollView 
-                      ref={scrollRef}
-                      horizontal
-                      onContentSizeChange={() => setIsReady(true)}>
-                        <View style={styles.table}>
-                            {renderPasswordList()}
-                        </View>
-                    </ScrollView>
-                )}
-         
-                <Text style={styles.subHeading}>
-                    {editing
-                        ? "Edit Password"
-                        : "Add a Password"}
-                </Text>
-                <TextInput
-                    style={styles.input}
-                    placeholderTextColor="rgba(160, 128, 80, 0.6)"
-                    placeholder="Enter Website"
-                    value={website}
-                    onChangeText={(website) => setWebsite(website)} />
-
-                <TextInput
+                &lt;TextInput
                     style={styles.input}
                      placeholderTextColor="rgba(160, 128, 80, 0.6)"
                     placeholder="Enter Username"
                     value={username}
-                    onChangeText={(username) => setUsername(username)} />
+                    onChangeText={(username) => setUsername(username)} /&gt;
 
-                <TextInput
+                &lt;TextInput
                     style={styles.input}
                     placeholderTextColor="rgba(160, 128, 80, 0.6)"
                     placeholder="Enter Password"
                     secureTextEntry={false}
                     value={password}
-                    onChangeText={(password) => setPassword(password)} />
+                    onChangeText={(password) => setPassword(password)} /&gt;
 
-                <TouchableOpacity
+                &lt;TouchableOpacity
                     style={{height:95, width:"99%", alignSelf:"center",}}
-                    onPress={savePassword}>
-                    <ImageBackground style={{flex:1, height:"auto", width:"98.5%",}} resizeMode='contain' source={require('../assets/pwrdbackground.png')}>
-                        <Image
+                    onPress={savePassword}&gt;
+                    &lt;ImageBackground style={{flex:1, height:"auto", width:"98.5%",}} resizeMode='contain' source={require('../assets/pwrdbackground.png')} &gt;
+                        &lt;Image
                             resizeMode="contain"
                             style={{ flex:1, height:"auto", width:"83%", alignSelf:"center",}}
                             source={editing ? require('../assets/editpwrd.png') : require('../assets/addpwrd.png')}
-                        />
-                    </ImageBackground>
-                </TouchableOpacity>
-            </View>
-        </ScrollView>
+                        /&gt;
+                    &lt;/ImageBackground&gt;
+                &lt;/TouchableOpacity&gt;
+           &lt;/View&gt;
+    &lt;/ScrollView&gt;
 <br> </code/> </pre>
             <img src="img/screenshot-stjacksjson.png" alt="">
             <img src="img/screenshotpasswordmanager.png" alt="screenshot">
