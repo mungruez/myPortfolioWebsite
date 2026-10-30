@@ -75,126 +75,88 @@ const pickFighterMedia = async (target, moveId = null) => {
         console.error(error);
     }
 };</code></pre>
-
-            
-           <p> <code> <br>
-import ImagePicker from expo-image-picker;<br>
-import { useAudioPlayer, useAudioPlayerStatus } from 'expo-audio';<br>
-import { View, Text, StyleSheet, Alert } from 'react-native';<br>
-import React, { useEffect, useRef, useState } from 'react';<br>
-
-<br>
-const pickFighterMedia = async (target, moveId = null) => {<br>
-    &nbsp &nbsp &nbsp &nbsp const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();<br>
-    &nbsp &nbsp &nbsp &nbsp if (status !== "granted") {<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Alert.alert("Permission Denied", "Gallery access is required!");<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp return;<br>
-    &nbsp &nbsp &nbsp &nbsp }<br>
-<br>
-    &nbsp &nbsp &nbsp &nbsp try {<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp isPickingRef.current = true;<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp setIsPicking(true);<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp const res = await ImagePicker.launchImageLibraryAsync({ mediaTypes: ['images'], allowsEditing: false, quality: 1.0 });<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if (res.canceled || !res.assets?.[0]?.uri) return;<br>
-<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp const pickedUri = res.assets[0].uri;<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp const ext = getMediaFileExtension(pickedUri);<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp const cacheDir = `${FileSystem.cacheDirectory}fighter-cache/`;<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp await FileSystem.makeDirectoryAsync(cacheDir, { intermediates: true });<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp const cachedUri = `${cacheDir}${Date.now()}${ext}`;<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp await FileSystem.copyAsync({ from: pickedUri, to: cachedUri });<br>
-<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if (target === 'avatar') {<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp setActiveAvatarUri(cachedUri);<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp } else if (target === 'move' && moveId) {<br>
-        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp updateMoveItem(moveId, 'img', cachedUri);<br>
-    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp }<br>
-    &nbsp &nbsp &nbsp &nbsp } catch (err) {<br>
-     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp Alert.alert("Picker Error", "Could not copy selected asset.");<br>
-    &nbsp &nbsp &nbsp &nbsp } finally {<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp isPickingRef.current = false;<br>
-      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp setIsPicking(false);<br>
-    &nbsp &nbsp &nbsp &nbsp }<br>
-  };<br>
-        
-</code/></p>
-            <p>iDojo allows users to add their own Fighters to the App and store them locally. The code above shows what happens when the user hits the add Fighter's avatar image button inside the App.</p>
-            <p>The expo-image-picker package is used to launch the image Library on the Android device.</p>
-            <p>The uri of the image selected by the user will be cached to the cachedDirectory, and the cacheduri is used when saving the Fighter to local storage. </p>
-            <br><br><br><br>
-            <img src="img/screenshotpasswordmanager.png" alt="screenshot">
+    <p>iDojo allows users to add their own Fighters to the App and store them locally. The code above shows what happens when the user hits the add Fighter's avatar image button inside the App.</p>
+    <p>The expo-image-picker package is used to launch the image Library on the Android device.</p>
+    <p>The uri of the image selected by the user will be cached to the cachedDirectory, and the cacheduri is used when saving the Fighter to local storage. </p>
+    <br><br>
+        <img src="img/screenshotpasswordmanager.png" alt="screenshot">
             <p><i>Screenshot of the JavaScript function used to Add Fighter Images</i></p>
-        </div><br>
+</div><br>
          
         <section class="intro">
             <h1 class="section__title section__title--intro">
                 iDojo <strong>Password Manager</strong>
             </h1>
             <p class="section__subtitle section__subtitle--intro">A Password Manager</p>
-            <img src="img/projects-08.png" alt="" class="intro__img">
+            <img src="img/icon.png" alt="" class="intro__img">
         </section>
         
         <div class="portfolio-item-individual">
-            <p>This is a Python web scraper that uses Scrapy and Selenium to scrape all the products of the St Jacks webstie. Selenium is a powerful tool for controlling web browsers through a web driver and performing browser automation. It is functional for all browsers, works on all major OS and its scripts are written in various languages i.e Python, Java, C#, etc, we will be working with Python. Install Python version 3, Scrapy and Selenium to run this script.</p>
-            <p> <code> <br>
+            <p>iDojo has a hidden Password manager in the App. Google and Apple policy requires the password manager to be reviewed to ensure all passwords stored must be encrypted. A complex, modern and very unique encryption algorithm is used. iDojo collects no user data so that in a case where a user forgets their PIN, it will be extremely difficult for their password data to be decrypted.</p>
+            <br> <pre> <code>
                 
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';<br>
-import React, { useEffect, useRef, useState } from 'react';<br>
-//Scrollview to display all passwords in a horizontal list.<br>
-&nbsp &nbsp &nbsp &nbsp <ScrollView style={styles.container}> <br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <View style={styles.content}><br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {passwords.length === 0 ? (<br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <Text style={styles.noData}> <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  No Passwords To Show<br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  </Text><br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ) : (<br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <ScrollView <br>
-                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ref={scrollRef} <br>
-                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp horizontal <br>
-                      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onContentSizeChange={() => setIsReady(true)}> <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <View style={styles.table}> <br>
-                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {renderPasswordList()} <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </View> <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </ScrollView> <br>
-                )} <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <Text style={styles.subHeading}> <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {editing <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ? "Edit Password" <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp : "Add a Password"} <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </Text> <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TextInput <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={styles.input} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholderTextColor="rgba(160, 128, 80, 0.6)" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholder="Enter Website" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={website} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(website) => setWebsite(website)} /> <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TextInput <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={styles.input} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholderTextColor="rgba(160, 128, 80, 0.6)" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholder="Enter Username" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={username} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(username) => setUsername(username)} /> <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TextInput <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={styles.input} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholderTextColor="rgba(160, 128, 80, 0.6)" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholder="Enter Password" <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp secureTextEntry={false} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={password} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(password) => setPassword(password)} /> <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TouchableOpacity <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={{height:95, width:"99%", alignSelf:"center",}} <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onPress={savePassword}> <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <ImageBackground style={{flex:1, height:"auto", width:"98.5%",}} resizeMode='contain' source={require('../assets/pwrdbackground.png')}> <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <Image <br>
-                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp resizeMode="contain" <br>
-                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={{ flex:1, height:"auto", width:"83%", alignSelf:"center",}} <br>
-                            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp source={editing ? require('../assets/editpwrd.png') : require('../assets/addpwrd.png')} <br>
-                        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp /> <br>
-                    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </ImageBackground> <br>
-                &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </TouchableOpacity> <br>
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </View> <br>
-        &nbsp &nbsp &nbsp &nbsp </ScrollView> <br>
-</code/> </p>
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+//Scrollview to display all passwords in a horizontal list.
+<ScrollView style={styles.container}>
+            <View style={styles.content}>
+
+                {passwords.length === 0 ? (
+                    <Text style={styles.noData}>
+                        No Passwords To Show
+                    </Text>
+                ) : (
+                    <ScrollView 
+                      ref={scrollRef}
+                      horizontal
+                      onContentSizeChange={() => setIsReady(true)}>
+                        <View style={styles.table}>
+                            {renderPasswordList()}
+                        </View>
+                    </ScrollView>
+                )}
+         
+                <Text style={styles.subHeading}>
+                    {editing
+                        ? "Edit Password"
+                        : "Add a Password"}
+                </Text>
+                <TextInput
+                    style={styles.input}
+                    placeholderTextColor="rgba(160, 128, 80, 0.6)"
+                    placeholder="Enter Website"
+                    value={website}
+                    onChangeText={(website) => setWebsite(website)} />
+
+                <TextInput
+                    style={styles.input}
+                     placeholderTextColor="rgba(160, 128, 80, 0.6)"
+                    placeholder="Enter Username"
+                    value={username}
+                    onChangeText={(username) => setUsername(username)} />
+
+                <TextInput
+                    style={styles.input}
+                    placeholderTextColor="rgba(160, 128, 80, 0.6)"
+                    placeholder="Enter Password"
+                    secureTextEntry={false}
+                    value={password}
+                    onChangeText={(password) => setPassword(password)} />
+
+                <TouchableOpacity
+                    style={{height:95, width:"99%", alignSelf:"center",}}
+                    onPress={savePassword}>
+                    <ImageBackground style={{flex:1, height:"auto", width:"98.5%",}} resizeMode='contain' source={require('../assets/pwrdbackground.png')}>
+                        <Image
+                            resizeMode="contain"
+                            style={{ flex:1, height:"auto", width:"83%", alignSelf:"center",}}
+                            source={editing ? require('../assets/editpwrd.png') : require('../assets/addpwrd.png')}
+                        />
+                    </ImageBackground>
+                </TouchableOpacity>
+            </View>
+        </ScrollView>
+<br> </code/> </pre>
             <img src="img/screenshot-stjacksjson.png" alt="">
             <img src="img/screenshotpasswordmanager.png" alt="screenshot">
             
