@@ -27,7 +27,6 @@
                 </ul>
             </nav>
         </header>
-        
 
         <section class="intro">
             <h1 class="section__title section__title--intro">
@@ -73,7 +72,7 @@ const pickFighterMedia = async (target, moveId = null) => {<br>
 <br>
       &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp if (target === 'avatar') {<br>
         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp setActiveAvatarUri(cachedUri);<br>
-        &nbsp &nbsp &nbsp &nbsp nbsp &nbsp &nbsp &nbsp } else if (target === 'move' && moveId) {<br>
+        &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp } else if (target === 'move' && moveId) {<br>
         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp updateMoveItem(moveId, 'img', cachedUri);<br>
     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp }<br>
     &nbsp &nbsp &nbsp &nbsp } catch (err) {<br>
@@ -92,10 +91,7 @@ const pickFighterMedia = async (target, moveId = null) => {<br>
             <img src="img/screenshotpasswordmanager.png" alt="screenshot">
             <p><i>Screenshot of the JavaScript function used to Add Fighter Images</i></p>
         </div><br>
-        
-        
-        
-        
+         
         <section class="intro">
             <h1 class="section__title section__title--intro">
                 iDojo <strong>Password Manager</strong>
@@ -111,10 +107,8 @@ const pickFighterMedia = async (target, moveId = null) => {<br>
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';<br>
 import React, { useEffect, useRef, useState } from 'react';<br>
 //Scrollview to display all passwords in a horizontal list.<br>
-<br>
 &nbsp &nbsp &nbsp &nbsp <ScrollView style={styles.container}> <br>
             &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <View style={styles.content}><br>
-<br>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {passwords.length === 0 ? (<br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <Text style={styles.noData}> <br>
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  No Passwords To Show<br>
@@ -129,7 +123,6 @@ import React, { useEffect, useRef, useState } from 'react';<br>
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </View> <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp </ScrollView> <br>
                 )} <br>
-          <br>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <Text style={styles.subHeading}> <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {editing <br>
                         &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp ? "Edit Password" <br>
@@ -141,14 +134,12 @@ import React, { useEffect, useRef, useState } from 'react';<br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholder="Enter Website" <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={website} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(website) => setWebsite(website)} /> <br>
- <br>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TextInput <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={styles.input} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholderTextColor="rgba(160, 128, 80, 0.6)" <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholder="Enter Username" <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={username} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(username) => setUsername(username)} /> <br>
- <br>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TextInput <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={styles.input} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp placeholderTextColor="rgba(160, 128, 80, 0.6)" <br>
@@ -156,7 +147,6 @@ import React, { useEffect, useRef, useState } from 'react';<br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp secureTextEntry={false} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp value={password} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onChangeText={(password) => setPassword(password)} /> <br>
- <br>
                 &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp <TouchableOpacity <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp style={{height:95, width:"99%", alignSelf:"center",}} <br>
                     &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp onPress={savePassword}> <br>
@@ -183,8 +173,6 @@ import React, { useEffect, useRef, useState } from 'react';<br>
             <p>This script opens a Chrome browser in headless mode, then it visits the St Jacks hopepage and parses and scrapes all the product categories on the website. Next the script visits each category page and scrapes all the links to the pages that contain product details. Finally the script scrapes and yields all the product details found on each product details page.</p>
             <p>I have written the Python code for web scrapers for numerous websites, such as Facebook, Indeed, Google Images, TheNorthFAce, RoadMarketGo and more. I have used Splash, Pupeteer and Phantom but I like to use Selenium with Beautiful Soup as they are very powerful web scraping tools.</p>
         </div>
-        
-        
         
         <section class="intro">
             <h1 class="section__title section__title--intro">
