@@ -97,7 +97,6 @@ const pickFighterMedia = async (target, moveId = null) => {
                 
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-//Scrollview to display all passwords in a horizontal list.
                 
 &lt;ScrollView style={styles.container}&gt;
     &lt;View style={styles.content}&gt;
@@ -107,7 +106,7 @@ import React, { useEffect, useRef, useState } from 'react';
         ) : (
             &lt;ScrollView ref={scrollRef} horizontal&gt;
                 &lt;View style={styles.table}&gt;
-                    {renderPasswordList()}
+                    {renderPasswordList()} //Scrollview displays all passwords in a horizontal list.
                 &lt;/View&gt;
             &lt;/ScrollView&gt;
         )}
